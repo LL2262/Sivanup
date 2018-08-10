@@ -15,6 +15,10 @@ import { RegisterComponent } from './componentes/register/register.component';
 import { PrivadoComponent } from './componentes/privado/privado.component';
 import { ErrorComponent } from './componentes/error/error.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+
 // Servicios
 import { AuthService } from './servicios/auth.service';
 
@@ -32,7 +36,9 @@ import { AuthService } from './servicios/auth.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [appRoutingProviders, AuthService],
   bootstrap: [AppComponent]
