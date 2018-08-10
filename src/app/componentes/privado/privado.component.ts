@@ -7,7 +7,12 @@ import { Component } from '@angular/core';
 
 export class PrivadoComponent{
 
-  constructor() { }
+  public titulo: string;
+
+  constructor() 
+  { 
+    this.titulo="Privado"
+  }
 
   ngOnInit() {
   }

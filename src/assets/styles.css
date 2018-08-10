@@ -1,8 +1,33 @@
-.navbar-brand {
-    padding: 0px;
-  }
-  .navbar-brand>img {
-    height: 100%;
-    padding: 15px;
-    width: auto;
-  }
+#main .jumbotron{
+    padding: 30px;
+    padding-top: 5px;
+    margin-top: -5px;
+    border-radius: 10px;
+}
+
+#footer{
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    color: gray;
+}
+
+.btn-facebook{
+    width: 32%;
+    background: #3b5998;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.btn-google{
+    width: 32%;
+    background: #dd4b39;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.btn-twitter{
+    width: 32%;
+    background: #55acee;
+    color: #fff;
+}

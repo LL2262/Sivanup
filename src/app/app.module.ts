@@ -13,7 +13,6 @@ import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { PrivadoComponent } from './componentes/privado/privado.component';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { ErrorComponent } from './componentes/error/error.component';
 
 
@@ -24,7 +23,6 @@ import { ErrorComponent } from './componentes/error/error.component';
     LoginComponent,
     RegisterComponent,
     PrivadoComponent,
-    NavbarComponent,
     ErrorComponent
   ],
   imports: [

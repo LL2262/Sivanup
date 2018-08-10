@@ -1,3 +1,58 @@
-<p>
-  login works!
-</p>
+<div class="row">
+  <div class="col-lg-4 col-lg-offset-4">
+    <div class="jumbotron">
+      <h3 class="text-center">{{titulo}}</h3>
+      <form>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" name="password" id="password" class="form-control">
+        </div>
+
+        <input type="text" value="Enviar" class="btn btn-primary btn-block">
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-lg-offset-4">
+      <div class="jumbotron" style="margin-top: -20px; padding-top: 30px">
+        <div class="row center-block">
+            <button class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</button>
+            <button class="btn btn-google"><i class="fa fa-google-plus"></i> Google</button>
+            <button class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- <form #formProducto="ngForm" (ngSubmit)="onSubmit()" class="col-lg-6" id="form-producto">
+
+    <label>Nombre <span *ngIf="!nombre.valid && nombre.touched" class="alert-danger">El nombre es obligatorio</span></label>
+    <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" required/>
+    <span *ngIf="!nombre.valid && nombre.touched">El nombre es obligatorio</span>
+  
+    <label>Descripcion <span *ngIf="!descripcion.valid && descripcion.touched" class="alert-danger">La descripcion es obligatoria</span></label>
+    <textarea #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" required></textarea>
+  
+    <label>Precio <span *ngIf="!precio.valid && precio.touched" class="alert-danger">El precio no es correcto</span></label>
+    <input type="number" step="any" #precio="ngModel" name="precio" [(ngModel)]="producto.precio" class="form-control" required/>
+  
+    <label>Imagen</label>
+    <div *ngIf="is_edit">
+        <img src="http://localhost/curso-angular4-backend/uploads/{{producto.
+          imagen}}" width="60"/>
+    </div>
+    <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+    <br/>
+    <input type="submit" value="{{titulo}}" [disabled]="!formProducto.form.valid" class="btn btn-success"/>
+  </form> -->
+  

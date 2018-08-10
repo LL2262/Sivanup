@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent{
 
-  constructor() { }
+  public titulo: string;
+
+  constructor()
+  {
+    this.titulo="LOGIN"
+  }
 
   ngOnInit() {
   }

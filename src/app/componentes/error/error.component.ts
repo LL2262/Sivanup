@@ -7,7 +7,12 @@ import { Component } from '@angular/core';
 
 export class ErrorComponent{
 
-  constructor() { }
+  public titulo: string;
+
+  constructor() 
+  {
+    this.titulo="Error 404"
+  }
 
   ngOnInit() {
   }

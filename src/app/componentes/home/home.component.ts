@@ -6,7 +6,12 @@ import { Component} from '@angular/core';
 })
 export class HomeComponent{
 
-  constructor() { }
+  public titulo: string;
+
+  constructor() 
+  {
+    this.titulo="Home"
+  }
 
   ngOnInit() {
   }

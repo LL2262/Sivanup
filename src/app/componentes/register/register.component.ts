@@ -7,7 +7,12 @@ import { Component } from '@angular/core';
 
 export class RegisterComponent{
 
-  constructor() { }
+  public titulo: string;
+
+  constructor() 
+  { 
+    this.titulo = "REGISTRO"
+  }
 
   ngOnInit() {
   }
