@@ -15,6 +15,9 @@ import { RegisterComponent } from './componentes/register/register.component';
 import { PrivadoComponent } from './componentes/privado/privado.component';
 import { ErrorComponent } from './componentes/error/error.component';
 
+// Servicios
+import { AuthService } from './servicios/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,7 @@ import { ErrorComponent } from './componentes/error/error.component';
     HttpModule,
     routing
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
