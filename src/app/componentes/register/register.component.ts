@@ -27,8 +27,7 @@ export class RegisterComponent{
   {
     this._authService.registerUser(this.email, this.password)
     .then( (res) => {
-      this._router.navigate(['/privado']);
-      
+      this._router.navigate(['/privado']);      
     }).catch( (err) => {
       console.log(err);
     });

@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { ToastModule } from 'ng2-toastr/ng2-toastr'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Rutas
-import { routing, appRoutingProviders } from './app.routing'
+import { routing, appRoutingProviders } from './app.routing';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -41,7 +43,9 @@ import { AuthGuard } from './guards/auth.guard';
     HttpModule,
     routing,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    ToastModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard],
   bootstrap: [AppComponent]
