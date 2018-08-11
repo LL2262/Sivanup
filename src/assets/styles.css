@@ -6,6 +6,11 @@
     background: #eee
 }
 
+#toast-container{
+    margin-bottom: 70px;
+    margin-top: 75px;
+}
+
 /*
 Centrar toda la seccion
 */

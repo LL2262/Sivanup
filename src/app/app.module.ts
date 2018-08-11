@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { ToastModule } from 'ng2-toastr/ng2-toastr'
+import { ToastModule } from 'ng2-toastr'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Rutas
@@ -26,7 +26,6 @@ import { AuthService } from './servicios/auth.service';
 
 // Control de autentificación
 import { AuthGuard } from './guards/auth.guard';
-
 
 @NgModule({
   declarations: [

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+
 
 @Component({
   selector: 'app-privado',
@@ -8,13 +9,15 @@ import { Component } from '@angular/core';
 export class PrivadoComponent{
 
   public titulo: string;
+  public primerLogueo: boolean;
 
   constructor() 
-  { 
-    this.titulo="Privado"
+  {  
+    this.titulo = "Privado";
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
   }
 
 }

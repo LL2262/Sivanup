@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router';
+import * as toastr from 'toastr';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,10 @@ export class RegisterComponent{
   constructor(private _authService: AuthService, private _router: Router) 
   { 
     this.titulo = "REGISTRO"
+    toastr.options = {
+      "positionClass": "toast-top-center",
+      "timeOut": "2000",
+    }
   }
 
   ngOnInit() 
@@ -27,9 +32,15 @@ export class RegisterComponent{
   {
     this._authService.registerUser(this.email, this.password)
     .then( (res) => {
+      toastr["success"]("", "Usuario reado correctamente");
       this._router.navigate(['/privado']);      
     }).catch( (err) => {
-      console.log(err);
+      if(err.code="auth/argument-error"){
+        toastr["error"]("El email ya esta en uso", "Error");
+      }
+      else{
+
+      }
     });
   }
 }
