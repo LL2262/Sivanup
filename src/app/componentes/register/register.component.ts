@@ -13,7 +13,7 @@ export class RegisterComponent{
   public email: string;
   public password: string;
 
-  constructor(public _authService: AuthService, private _router: Router) 
+  constructor(private _authService: AuthService, private _router: Router) 
   { 
     this.titulo = "REGISTRO"
   }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../servicios/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +9,28 @@ import { Component } from '@angular/core';
 export class LoginComponent{
 
   public titulo: string;
+  public email: string;
+  public password: string;
 
-  constructor()
+  constructor(private _authService: AuthService, private _router: Router)
   {
     this.titulo="LOGIN"
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+
+  }
+
+  onSubmitLogin()
+  {
+    this._authService.loginEmail(this.email, this.password)
+    .then( (res) => {
+      this._router.navigate(['/privado']);    
+    }).catch( (err) => {
+      console.log(err);
+      this._router.navigate(['/login']);
+    });
   }
 
 }

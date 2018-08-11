@@ -2,7 +2,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">SIVANUP</a>
+                <a class="navbar-brand" [routerLink]="['/home']">SIVANUP</a>
             </div>
             <ul class="nav navbar-nav">
                 <li class="active">
@@ -16,16 +16,19 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li *ngIf="!isLogin">
                     <a [routerLink]="['/registrarse']">
                         <span class="glyphicon glyphicon-user"></span> Registrarse</a>
                 </li>
-                <li>
+                <li *ngIf="!isLogin">
                     <a [routerLink]="['/login']">
                         <span class="glyphicon glyphicon-log-in"></span> Login</a>
                 </li>
-                <li>
-                    <a href="#">
+                <li *ngIf="isLogin">
+                    <a><i class="fa fa-address-card"></i> {{emailUsuario}}</a>
+                </li>
+                <li *ngIf="isLogin">
+                    <a href="#" (click)="onClickLogout()">
                         <span class="glyphicon glyphicon-log-out"></span> Logout</a>
                 </li>
             </ul>
