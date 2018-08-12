@@ -25,7 +25,8 @@
                         <span class="glyphicon glyphicon-log-in"></span> Login</a>
                 </li>
                 <li *ngIf="isLogin">
-                    <a><i class="fa fa-address-card"></i> {{emailUsuario}}</a>
+                    <a><img *ngIf="fotoUsuario" src="{{fotoUsuario}}" class="img-circle" id="img-email">
+                    <span> {{emailUsuario}}</span> </a>   
                 </li>
                 <li *ngIf="isLogin">
                     <a href="#" (click)="onClickLogout()">

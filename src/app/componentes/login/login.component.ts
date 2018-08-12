@@ -41,4 +41,13 @@ export class LoginComponent{
     });
   }
 
+  onClickGoogleLogin()
+  {
+    this._authService.loginGoogle()
+    .then( (res) => {
+      this._router.navigate(['/privado']); 
+    }).catch( (err) => {
+      this._router.navigate(['/login']);  
+    });
+  }
 }

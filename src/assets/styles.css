@@ -6,6 +6,13 @@
     background: #eee
 }
 
+#img-email{
+    width: 35px;
+    height: 35px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
 #toast-container{
     margin-bottom: 70px;
     margin-top: 75px;

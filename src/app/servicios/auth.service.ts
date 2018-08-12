@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { promise } from '../../../node_modules/protractor';
 import { resolve } from 'url';
 import { reject } from '../../../node_modules/@types/q';
+import firebase = require('../../../node_modules/firebase');
 
 @Injectable()
 export class AuthService {
@@ -25,6 +26,11 @@ export class AuthService {
       .then( userData => resolve(userData),
     err => reject (err));
     });
+  }
+
+  loginGoogle()
+  {
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
   getAuth()

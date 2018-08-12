@@ -35,8 +35,10 @@ export class RegisterComponent{
       toastr["success"]("", "Usuario reado correctamente");
       this._router.navigate(['/privado']);      
     }).catch( (err) => {
-      if(err.code="auth/argument-error"){
+      console.log(err.code)
+      if(err.code=="auth/email-already-in-use"){
         toastr["error"]("El email ya esta en uso", "Error");
+        this._router.navigate(['/registrarse']); 
       }
       else{
 
