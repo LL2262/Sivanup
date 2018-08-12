@@ -50,4 +50,14 @@ export class LoginComponent{
       this._router.navigate(['/login']);  
     });
   }
+
+  onClickFacebookLogin()
+  {
+    this._authService.loginFacebook()
+    .then( (res) => {
+      this._router.navigate(['/privado']); 
+    }).catch( (err) => {
+      this._router.navigate(['/login']);  
+    });
+  }
 }
