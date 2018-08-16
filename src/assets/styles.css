@@ -78,3 +78,20 @@ Centrar toda la seccion
 #fondo {
     background: linear-gradient(top, black, white);
 }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;    
+}
+
+.dropdown-menu>li>a{
+    color: #3b5998;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-menu>li>a:hover{
+    background: #3b5998;
+    color: aqua;
+    transition: 700ms ease;
+}
