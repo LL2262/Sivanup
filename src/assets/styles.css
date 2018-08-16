@@ -79,19 +79,45 @@ Centrar toda la seccion
     background: linear-gradient(top, black, white);
 }
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-menu {
-    display: block;    
+.navbar-inverse .navbar-nav>li>a {
+    color: #eee;
 }
 
+.dropdown .dropdown-menu{
+    display: block; 
+    opacity:0;
+    -webkit-transition: all 300ms ease-in;
+    -moz-transition: all 300ms ease-in;
+    -ms-transition: all 300ms ease-in;
+    -o-transition: all 300ms ease-in;
+    transition: all 300ms ease-in;
+}
+.dropdown.open .dropdown-menu {
+    display: block;
+    opacity: 1;
+    background-color:  #222;
+    border-color: #080808;   
+}
+
+
 .dropdown-menu>li>a{
-    color: #3b5998;
+    color: #eee;
     display: block;
     text-decoration: none;
 }
 
 .dropdown-menu>li>a:hover{
-    background: #3b5998;
-    color: aqua;
-    transition: 700ms ease;
+    background: #eee;
+    color: #222;
+    transition: 300ms ease;
 }
+
+.expand_caret {
+    transform: scale(1.6);
+    margin-left: 8px;
+    margin-top: -4px;
+}
+a[aria-expanded='true'] > .expand_caret {
+    transform: scale(1.6) rotate(180deg);
+}
+  
