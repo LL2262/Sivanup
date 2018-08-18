@@ -16,6 +16,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { PrivadoComponent } from './componentes/privado/privado.component';
 import { ErrorComponent } from './componentes/error/error.component';
+import { CentrosComponent } from './componentes/centros/centros.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -23,9 +24,11 @@ import { environment } from '../environments/environment';
 
 // Servicios
 import { AuthService } from './servicios/auth.service';
+import { SivanupService } from './servicios/sivanup.service';
 
 // Control de autentificación
 import { AuthGuard } from './guards/auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { AuthGuard } from './guards/auth.guard';
     LoginComponent,
     RegisterComponent,
     PrivadoComponent,
-    ErrorComponent
+    ErrorComponent,
+    CentrosComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,7 @@ import { AuthGuard } from './guards/auth.guard';
     ToastModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [appRoutingProviders, AuthService, AuthGuard],
+  providers: [appRoutingProviders, AuthService, AuthGuard, SivanupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
