@@ -3,6 +3,9 @@ import { SivanupService } from '../../servicios/sivanup.service';
 import { Centros } from '../../models/centros';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+declare var jQuery:any;
+declare var $:any;
+
 @Component({
   selector: 'app-centros',
   templateUrl: './centros.component.html',
@@ -11,11 +14,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class CentrosComponent{
 
 public titulo: string;
-public centros: Centros[];
+public data;
+public buscador: string;
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _sivanupService: SivanupService)
   {
-    this.titulo="Lista de Centros"
+    this.titulo = "Lista de Centros";
   }
 
   ngOnInit() 
@@ -27,7 +31,7 @@ public centros: Centros[];
     {
         this._sivanupService.getCentros().subscribe(
             result => {
-                this.centros = result.data;
+                this.data = result.data;
             },
             error => {
                 console.log(<any>error);

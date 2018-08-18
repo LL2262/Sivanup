@@ -3,36 +3,48 @@
       <div class="jumbotron">
         <h3 class="text-center">{{titulo}}</h3>
 
-        <div *ngIf="!centros">
+        <div *ngIf="!data">
             Cargando listado de centross...
         </div>
 
-        <div class="table-responsive" *ngIf="centros">
-            <table class="table">
+        <div class="table-responsive" *ngIf="data">
+            <div class="form-inline">
+                <button type="button" class="btn btn-primary" data-toggle="modal" >Nuevo Centro</button>
+                <input type="text" class="form-control" placeholder="Buscar Centro de Jubilado" [(ngModel)]="buscador" style="width: 400px;"/>
+            </div>
+            <table class="table" [mfData]="data | FiltroCentros:buscador"  #mf="mfDataTable" [mfRowsOnPage]="10">
                 <thead>
                     <tr>
-                        <th class="col-sm-1">#</th>
-                        <th class="col-sm-7 text-center">Nombre</th>
-                        <th class="col-sm-4"></th>
+                        <th>#</th>
+                        <th class="text-center">Nombre</th>
+                        <th></th>
                     </tr>
                 </thead>
-                    <tbody *ngFor="let centro of centros">
+                    <tbody *ngFor="let item of mf.data">
                         <tr>
-                            <th scope="row">{{centro.IdCentro}}</th>
-                            <td>{{centro.NombreCentro}}</td>
-                            <td>                               
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" >Rechazar</button><b> |</b>                           
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" >Aceptar</button><b> |</b>
+                            <th scope="row">{{item.IdCentro}}</th>
+                            <td>{{item.NombreCentro}}</td>
+                            <td class="text-right"> 
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" >Ver</button><b> |</b>                              
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" >Editar</button><b> |</b>                           
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" >Eliminar</button>                               
                             </td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                          <td colspan="4">
+                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10]"></mfBootstrapPaginator>
+                          </td>
+                        </tr>
+                    </tfoot>
               </table>
         </div>
 
       </div>
     </div>
   </div>
+
 
   <!-- <div class="card form-card">
       <div class="text-center">

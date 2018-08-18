@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { ToastModule } from 'ng2-toastr'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataTableModule } from 'angular2-datatable'
+import { DataTablesModule } from 'angular-datatables';
+import { DataFilterPipe }   from './componentes/centros/centro-filter.pipe';
 
 // Rutas
 import { routing, appRoutingProviders } from './app.routing';
@@ -38,7 +41,8 @@ import { AuthGuard } from './guards/auth.guard';
     RegisterComponent,
     PrivadoComponent,
     ErrorComponent,
-    CentrosComponent
+    CentrosComponent,
+    DataFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import { AuthGuard } from './guards/auth.guard';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ToastModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DataTableModule,
+    DataTablesModule
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard, SivanupService],
   bootstrap: [AppComponent]
