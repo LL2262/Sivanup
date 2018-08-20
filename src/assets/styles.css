@@ -6,6 +6,7 @@
     background: #eee
 }
 
+
 #img-email{
     width: 35px;
     height: 35px;
@@ -119,5 +120,10 @@ Centrar toda la seccion
 }
 a[aria-expanded='true'] > .expand_caret {
     transform: scale(1.6) rotate(180deg);
+}
+
+.alert-danger{
+    background: transparent;
+    color: #dd4b39;
 }
   

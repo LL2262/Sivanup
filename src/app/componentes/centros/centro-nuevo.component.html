@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="jumbotron">
+            <h3 class="text-center">{{titulo}}</h3>
+            <form #formCentro="ngForm">
+
+                <div class="form-group">
+                    <label>Nombre
+                        <span *ngIf="!NombreCentro.valid && NombreCentro.touched" class="alert-danger">
+                            <i class="fa fa-exclamation-circle"></i> El nombre es obligatorio</span>
+                    </label>
+                    <input type="NombreCentro" #NombreCentro="ngModel" name="NombreCentro" [(ngModel)]="centro.NombreCentro" class="form-control text-uppercase"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Comentario">Comentario</label>
+                    <textarea type="text" name="Comentario" [(ngModel)]="centro.Comentario" class="form-control text-uppercase"></textarea>
+                </div>
+                <div class="form-inline text-center">
+                    <input type="button" value="{{accion}}" [disabled]="!formCentro.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#nuevoCentro">
+                    <input [routerLink]="['/centros']" type="button" value="Volver a centros" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL GUARDAR CENTRO -->
+<div class="modal fade" id="nuevoCentro" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><strong>Nuevo centro</strong></h3>
+            </div>
+            <div class="modal-body">
+                <h4><strong>¿Estás seguro que deseas agregar este centro?</strong></h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-primary" (click)="saveCentro()" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <form #formProducto="ngForm" (ngSubmit)="onSubmit()" class="col-lg-6" id="form-producto">
+
+    <label>Nombre <span *ngIf="!nombre.valid && nombre.touched" class="alert-danger">El nombre es obligatorio</span></label>
+    <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" required/>
+    <span *ngIf="!nombre.valid && nombre.touched">El nombre es obligatorio</span>
+  
+    <label>Descripcion <span *ngIf="!descripcion.valid && descripcion.touched" class="alert-danger">La descripcion es obligatoria</span></label>
+    <textarea #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" required></textarea>
+  
+    <label>Precio <span *ngIf="!precio.valid && precio.touched" class="alert-danger">El precio no es correcto</span></label>
+    <input type="number" step="any" #precio="ngModel" name="precio" [(ngModel)]="producto.precio" class="form-control" required/>
+  
+    <label>Imagen</label>
+    <div *ngIf="is_edit">
+        <img src="http://localhost/curso-angular4-backend/uploads/{{producto.
+          imagen}}" width="60"/>
+    </div>
+    <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+    <br/>
+    <input type="submit" value="{{titulo}}" [disabled]="!formProducto.form.valid" class="btn btn-success"/>
+  </form> -->

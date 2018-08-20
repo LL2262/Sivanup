@@ -24,14 +24,14 @@ export class SivanupService{
     //     return this._http.get(this.url+'producto/'+id).map(res=>res.json());
     // }
 
-    // addProducto(producto: Producto)
-    // {
-    //     let json = JSON.stringify(producto);
-    //     let params = 'json=' + json;
-    //     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    addCentro(centro: Centros)
+    {
+        let json = JSON.stringify(centro);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-    //     return this._http.post(this.url+'productos', params, {headers: headers}).map(res=>res.json());
-    // }
+        return this._http.post(this.url+'centro', params, {headers: headers}).map(res=>res.json());
+    }
 
     // editProducto(id, producto: Producto)
     // {

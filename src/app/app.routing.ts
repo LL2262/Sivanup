@@ -8,6 +8,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { PrivadoComponent } from './componentes/privado/privado.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { CentrosComponent } from './componentes/centros/centros.component';
+import { CentroNuevo } from './componentes/centros/centro-nuevo.component';
 
 import { AuthGuard } from './guards/auth.guard'
 
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
      {path: 'registrarse', component: RegisterComponent},
      {path: 'privado', component: PrivadoComponent, canActivate: [AuthGuard]},
      {path: 'centros', component: CentrosComponent},
+     {path: 'nuevoCentro', component: CentroNuevo},
      {path: '**', component: ErrorComponent}
 ];
 

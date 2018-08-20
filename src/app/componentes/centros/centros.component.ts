@@ -3,9 +3,6 @@ import { SivanupService } from '../../servicios/sivanup.service';
 import { Centros } from '../../models/centros';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-declare var jQuery:any;
-declare var $:any;
-
 @Component({
   selector: 'app-centros',
   templateUrl: './centros.component.html',
