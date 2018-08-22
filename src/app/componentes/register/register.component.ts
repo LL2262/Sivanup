@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router';
 import * as toastr from 'toastr';
+import { Usuarios } from '../../models/usuarios';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,8 @@ export class RegisterComponent{
   public titulo: string;
   public email: string;
   public password: string;
+  public usuario: Usuarios;
+  public fechaActual: Date;
 
   constructor(private _authService: AuthService, private _router: Router) 
   { 
@@ -21,6 +24,8 @@ export class RegisterComponent{
       "positionClass": "toast-top-center",
       "timeOut": "2000",
     }
+    this.fechaActual = new Date();
+    this.usuario=new Usuarios('0','','','','', '','',this.fechaActual, null, false);
   }
 
   ngOnInit() 
@@ -30,7 +35,7 @@ export class RegisterComponent{
 
   onSubmitAddUser()
   {
-    this._authService.registerUser(this.email, this.password)
+    this._authService.registerUser(this.usuario.EmailUsuario, this.usuario.PasswordUsuario)
     .then( (res) => {
       toastr["success"]("", "Usuario reado correctamente");
       this._router.navigate(['/privado']);      

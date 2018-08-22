@@ -91,7 +91,7 @@ Centrar toda la seccion
     color: #eee;
 }
 
-.dropdown .dropdown-menu{
+/* .dropdown .dropdown-menu{
     display: block; 
     opacity:0;
     -webkit-transition: all 300ms ease-in;
@@ -99,7 +99,7 @@ Centrar toda la seccion
     -ms-transition: all 300ms ease-in;
     -o-transition: all 300ms ease-in;
     transition: all 300ms ease-in;
-}
+} */
 .dropdown.open .dropdown-menu {
     display: block;
     opacity: 1;

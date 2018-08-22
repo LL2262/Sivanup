@@ -1,20 +1,53 @@
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
+    <div class="col-md-8 col-md-offset-2">
       <div class="jumbotron">
         <h3 class="text-center">{{titulo}}</h3>
-        <form (submit)="onSubmitAddUser()">
+        <form #formRegistro="ngForm" (submit)="onSubmitAddUser()">
   
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" [(ngModel)]="email" class="form-control">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Apellido<span *ngIf="!apellido.valid && apellido.touched" class="alert-danger">
+                <i class="fa fa-exclamation-circle"></i> El apellido es obligatorio</span></label>
+              <input type="text" #apellido="ngModel" name="apellido"[(ngModel)]="usuario.ApellidoUsuario" class="form-control text-uppercase" placeholder="Apellido" required>
+            </div>
+    
+            <div class="form-group col-md-6">
+              <label>Nombre<span *ngIf="!nombre.valid && nombre.touched" class="alert-danger">
+                <i class="fa fa-exclamation-circle"></i> El nombre es obligatorio</span></label>
+              <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="usuario.NombreUsuario" class="form-control text-uppercase" placeholder="Nombre" required>
+            </div>
           </div>
-  
-          <div class="form-group">
-            <label for="password">Contraseña</label>
-            <input type="password" name="password" id="password" [(ngModel)]="password" class="form-control">
+          
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Documento<span *ngIf="!documento.valid && documento.touched" class="alert-danger">
+                <i class="fa fa-exclamation-circle"></i> El documento es obligatorio</span></label>
+              <input type="number" #documento="ngModel" name="documento" [(ngModel)]="usuario.documento" class="form-control" placeholder="Documento" pattern="[0-9]+" required>
+            </div>
+    
+            <div class="form-group col-md-6">
+              <label>Telefono<span *ngIf="!telefono.valid && telefono.touched" class="alert-danger">
+                <i class="fa fa-exclamation-circle"></i> El telefono es obligatorio</span></label>
+              <input type="text" #telefono="ngModel" name="telefono" [(ngModel)]="usuario.telefono" class="form-control" placeholder="Telefono" required>
+            </div>
           </div>
+          
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Email<span *ngIf="!email.valid && email.touched" class="alert-danger">
+                <i class="fa fa-exclamation-circle"></i> El email es obligatorio</span></label>
+              <input type="email" #email="ngModel" name="email" [(ngModel)]="usuario.EmailUsuario" class="form-control" placeholder="Email" required>
+            </div>
+    
+            <div class="form-group col-md-6">
+              <label>Contraseña<span *ngIf="!password.valid && password.touched" class="alert-danger">
+                <i class="fa fa-exclamation-circle"></i> La contraseña es obligatoria</span></label>
+              <input type="password" #password="ngModel" name="password" [(ngModel)]="usuario.PasswordUsuario" class="form-control" placeholder="Contraseña" required>
+            </div>
+          </div>
+          
   
-          <input type="submit" value="Enviar" class="btn btn-primary btn-block">
+          <input type="submit" [disabled]="!formRegistro.form.valid" value="Enviar" class="btn btn-primary btn-block">
   
         </form>
       </div>

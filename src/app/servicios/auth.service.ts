@@ -38,6 +38,11 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
 
+  loginTwitter()
+  {
+    
+  }
+
   getAuth()
   {
     return this.afAuth.authState.map(auth => auth);
