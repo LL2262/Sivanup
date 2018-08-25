@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import * as toastr from 'toastr';
 import { Usuarios } from '../../models/usuarios';
 
+declare var $: any;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -31,6 +33,9 @@ export class RegisterComponent{
   ngOnInit() 
   {
 
+    $('.input-number').on('input', function () { 
+      this.value = this.value.replace(/[^0-9]/g,'');
+       });
   }
 
   onSubmitAddUser()
