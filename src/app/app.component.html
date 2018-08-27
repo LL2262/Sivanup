@@ -17,7 +17,7 @@
                         <a [routerLink]="['/home']">
                             <i class="fa fa-home"></i> Home</a>
                     </li>
-                    <li class="dropdown">
+                    <li *ngIf="isLogin" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">ABMs
                             <span class="expand_caret caret"></span>
                         </a>
@@ -48,11 +48,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li *ngIf="isLogin">
                         <a href="#">
                             <i class="fa fa-users"></i> Personas</a>
                     </li>
-                    <li>
+                    <li *ngIf="isLogin">
                         <a href="#">
                             <i class="fa fa-edit"></i> Encuestas</a>
                     </li>

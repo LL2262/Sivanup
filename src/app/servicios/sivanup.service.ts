@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions, XHRBackend } from '@angular/ht
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/observable';
 import { Centros } from '../models/centros';
+import { Usuarios } from '../models/usuarios';
 
 @Injectable()
 export class SivanupService{
@@ -12,6 +13,20 @@ export class SivanupService{
     constructor(public _http: Http)
     {
         this.url = 'http://localhost/Sivanup-backend/index.php/' 
+    }
+
+    addUsuario(usuario: Usuarios)
+    {
+        let json = JSON.stringify(usuario);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'usuario', params, {headers: headers}).map(res=>res.json());
+    }
+
+    getUsuario(email)
+    {
+        return this._http.get(this.url+'usuarioLog/'+email).map(res=>res.json());
     }
 
     getCentros()

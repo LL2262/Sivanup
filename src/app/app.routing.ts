@@ -18,8 +18,8 @@ const appRoutes: Routes = [
      {path: 'login', component: LoginComponent},
      {path: 'registrarse', component: RegisterComponent},
      {path: 'privado', component: PrivadoComponent, canActivate: [AuthGuard]},
-     {path: 'centros', component: CentrosComponent},
-     {path: 'nuevoCentro', component: CentroNuevo},
+     {path: 'centros', component: CentrosComponent, canActivate: [AuthGuard]},
+     {path: 'nuevoCentro', component: CentroNuevo, canActivate: [AuthGuard]},
      {path: '**', component: ErrorComponent}
 ];
 

@@ -1,12 +1,15 @@
 import { Component, ViewContainerRef} from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
+import { SivanupService } from '../../servicios/sivanup.service';
 import { Router } from '@angular/router';
 import { messaging } from 'firebase';
 import * as toastr from 'toastr';
+import { Usuarios } from '../../models/usuarios';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  providers: [SivanupService]
 })
 
 export class LoginComponent{
@@ -14,8 +17,9 @@ export class LoginComponent{
   public titulo: string;
   public email: string;
   public password: string; 
+  public usuario: Usuarios;
 
-  constructor(private _authService: AuthService, private _router: Router)
+  constructor(private _authService: AuthService, private _router: Router, private _sivanupService: SivanupService)
   {
     this.titulo="LOGIN"
     toastr.options = {
@@ -31,6 +35,7 @@ export class LoginComponent{
 
   onSubmitLogin()
   {
+    this.traerUsuario();
     this._authService.loginEmail(this.email, this.password)
     .then( (res) => {
       toastr["success"]("Usuario", "Hola!");
@@ -40,6 +45,19 @@ export class LoginComponent{
       this._router.navigate(['/login']);  
     });
   }
+
+  traerUsuario()
+    {
+        this._sivanupService.getUsuario(3).subscribe(
+            result => {
+              console.log(result.data);
+              this.usuario = result.data;
+            },
+            error => {
+              console.log(<any>error);
+            }
+        );
+    }
 
   onClickGoogleLogin()
   {

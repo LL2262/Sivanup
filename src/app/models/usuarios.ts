@@ -8,6 +8,7 @@ export class Usuarios{
         public PasswordUsuario: string,
         public Documento: string,
         public TelefonoUsuario: string,
+        public IdPermiso: number,
         public FechaAltaUsuario: Date,
         public FechaBajaUsuario: Date,
         public Baja: boolean,

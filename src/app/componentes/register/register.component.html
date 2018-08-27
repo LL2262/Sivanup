@@ -22,13 +22,13 @@
             <div class="form-group col-md-6">
               <label>Documento<span *ngIf="!documento.valid && documento.touched" class="alert-danger">
                 <i class="fa fa-exclamation-circle"></i> El documento es obligatorio</span></label>
-              <input type="text" #documento="ngModel" name="documento" [(ngModel)]="usuario.documento" class="form-control input-number"  placeholder="Documento"  required>
+              <input type="text" #documento="ngModel" name="documento" [(ngModel)]="usuario.Documento" class="form-control input-number"  placeholder="Documento"  required>
             </div>
     
             <div class="form-group col-md-6">
               <label>Telefono<span *ngIf="!telefono.valid && telefono.touched" class="alert-danger">
                 <i class="fa fa-exclamation-circle"></i> El telefono es obligatorio</span></label>
-              <input type="text" #telefono="ngModel" name="telefono" [(ngModel)]="usuario.telefono" class="form-control input-number"  placeholder="Telefono" required>
+              <input type="text" #telefono="ngModel" name="telefono" [(ngModel)]="usuario.TelefonoUsuario" class="form-control input-number"  placeholder="Telefono" required>
             </div>
           </div>
           
