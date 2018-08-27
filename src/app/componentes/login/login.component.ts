@@ -38,7 +38,7 @@ export class LoginComponent{
     this.traerUsuario();
     this._authService.loginEmail(this.email, this.password)
     .then( (res) => {
-      toastr["success"]("Usuario", "Hola!");
+      toastr["success"](this.usuario.NombreUsuario, "Hola!");
       this._router.navigate(['/privado']); 
     }).catch( (err) => {
       toastr["error"]("Datos invalidos", "Error");
@@ -48,9 +48,8 @@ export class LoginComponent{
 
   traerUsuario()
     {
-        this._sivanupService.getUsuario(3).subscribe(
-            result => {
-              console.log(result.data);
+        this._sivanupService.getUsuario(this.email).subscribe(
+            result => {         
               this.usuario = result.data;
             },
             error => {
