@@ -21,6 +21,7 @@ import { PrivadoComponent } from './componentes/privado/privado.component';
 import { ErrorComponent } from './componentes/error/error.component';
 import { CentrosComponent } from './componentes/centros/centros.component';
 import { CentroNuevo } from './componentes/centros/centro-nuevo.component';
+import { CentroEditar } from './componentes/centros/centro-editar.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -44,7 +45,8 @@ import { AuthGuard } from './guards/auth.guard';
     ErrorComponent,
     CentrosComponent,
     DataFilterPipe,
-    CentroNuevo
+    CentroNuevo,
+    CentroEditar
   ],
   imports: [
     BrowserModule,

@@ -34,10 +34,10 @@ export class SivanupService{
         return this._http.get(this.url+'centros').map(res=>res.json());
     }
 
-    // getProducto(id)
-    // {
-    //     return this._http.get(this.url+'producto/'+id).map(res=>res.json());
-    // }
+    getCentro(id)
+    {
+        return this._http.get(this.url+'centro/'+id).map(res=>res.json());
+    }
 
     addCentro(centro: Centros)
     {

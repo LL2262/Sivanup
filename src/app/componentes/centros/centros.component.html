@@ -28,7 +28,7 @@
                             <td class="text-right col-sm-3 col-md-3">
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" attr.data-target="#detalle{{item.IdCentro}}"><i class="fa fa-search-plus"></i></button>
                                 <b> |</b>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"><i class="fa fa-edit"></i></button>
+                                <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/editarCentro/', item.IdCentro]"><i class="fa fa-edit"></i></button>
                                 <b> |</b>
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"><i class="fa fa-trash"></i></button>
                             </td>

@@ -14,13 +14,12 @@ import * as toastr from 'toastr';
 
     public titulo: string;
     public centro: Centros;
-    public accion: string;
+    public editar: boolean;
 
     constructor(private _route: ActivatedRoute, private _router: Router, private _sivanupService: SivanupService)
     {
         this.titulo = "Nuevo Centro";
         this.centro = new Centros('0', '','', false);
-        this.accion = "Guardar";
         toastr.options = {
             "positionClass": "toast-top-right",
             "timeOut": "4000",
@@ -29,7 +28,7 @@ import * as toastr from 'toastr';
 
     ngOnInit()
     {
-
+        this.editar = false;
     }
 
     saveCentro() {
