@@ -52,6 +52,25 @@ import * as toastr from 'toastr';
         });
     }
 
+    updateCentro() {
+        this._route.params.forEach((params: Params) => {
+            let id = params['id'];
+            this._sivanupService.editCentro(id, this.centro).subscribe(
+                response => {
+                    if (response.code == 200) {
+                        toastr["success"]("Centro modificado correctamente", "");
+                        this._router.navigate(['/centros']);
+                    } else {
+                        console.log(response);
+                    }
+                },
+                error => {
+                    console.log(<any>error);
+                }
+            );
+        });
+    }
+
 
 
 }

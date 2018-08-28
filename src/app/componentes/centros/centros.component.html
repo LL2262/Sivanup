@@ -30,7 +30,7 @@
                                 <b> |</b>
                                 <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/editarCentro/', item.IdCentro]"><i class="fa fa-edit"></i></button>
                                 <b> |</b>
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"><i class="fa fa-trash"></i></button>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" attr.data-target="#eliminar{{item.IdCentro}}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                         <!-- MODAL DETALLE CENTRO -->
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div>
-                                            <label><h4><strong>Nmero: </strong></h4></label>
+                                            <label><h4><strong>Número: </strong></h4></label>
                                             {{item.IdCentro}}
                                         </div>
                                         <div>
@@ -56,6 +56,23 @@
                                     </div>
                                     <div class="modal-footer" style="text-align: center">
                                          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ELIMINAR CENTRO -->
+                        <div class="modal fade" id="eliminar{{item.IdCentro}}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title"><strong>Eliminar centro</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4><strong>¿Estás seguro que deseas eliminar {{item.NombreCentro}} de la lista de centros?</strong></h4>
+                                    </div>
+                                    <div class="modal-footer" style="text-align: center">
+                                        <button type="button" class="btn btn-primary" (click)="OnDeleteCentro(item.IdCentro)" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
                             </div>

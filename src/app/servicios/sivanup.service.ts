@@ -48,19 +48,19 @@ export class SivanupService{
         return this._http.post(this.url+'centro', params, {headers: headers}).map(res=>res.json());
     }
 
-    // editProducto(id, producto: Producto)
-    // {
-    //     let json = JSON.stringify(producto);
-    //     let params = 'json=' + json;
-    //     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    editCentro(id, centro: Centros)
+    {
+        let json = JSON.stringify(centro);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-    //     return this._http.post(this.url+'update-producto/'+id, params, {headers: headers}).map(res=>res.json());
-    // }
+        return this._http.post(this.url+'update-centro/'+id, params, {headers: headers}).map(res=>res.json());
+    }
 
-    // deleteProducto(id)
-    // {
-    //     return this._http.get(this.url+'delete-producto/'+id).map(res=>res.json());
-    // }
+    deleteCentro(id)
+    {
+        return this._http.get(this.url+'delete-centro/'+id).map(res=>res.json());
+    }
 
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)
     // {
