@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="jumbotron">
+            <h3 class="text-center">{{titulo}}</h3>
+
+            <div *ngIf="!data">
+                Cargando listado de departamentos...
+            </div>
+
+            <div class="table-responsive" *ngIf="data">
+                <div class="form-inline">
+                    <button type="button" class="btn btn-primary" [routerLink]="['/nuevoDpto']">Nuevo Departamento</button>
+                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Departamento" [(ngModel)]="buscador" style="width: 400px;"
+                    />
+                </div>
+                <table class="table" [mfData]="data | FiltroDptos:buscador" #mf="mfDataTable" [mfRowsOnPage]="10">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="text-center">Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of mf.data">
+                        <tr>
+                            <th scope="row">{{item.IdDpto}}</th>
+                            <td>{{item.NombreDpto}}</td>
+                            <td class="text-right col-sm-3 col-md-3">
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" attr.data-target="#detalle{{item.IdDpto}}"><i class="fa fa-search-plus"></i></button>
+                                <b> |</b>
+                                <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/editarDpto/', item.IdDpto]"><i class="fa fa-edit"></i></button>
+                                <b> |</b>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" attr.data-target="#eliminar{{item.IdDpto}}"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <!-- MODAL DETALLE DEPARTAMENTO -->
+                        <div class="modal fade" id="detalle{{item.IdDpto}}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title"><strong>Detalle del departamento</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            <label><h4><strong>Número: </strong></h4></label>
+                                            {{item.IdDpto}}
+                                        </div>
+                                        <div>
+                                            <label><h4><strong>Nombre: </strong></h4></label>
+                                            {{item.NombreDpto}}
+                                        </div>
+                                        <div>
+                                            <label><h4><strong>Comentario: </strong></h4></label>
+                                            {{item.Comentario}}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" style="text-align: center">
+                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ELIMINAR DEPARTAMENTO -->
+                        <div class="modal fade" id="eliminar{{item.IdDpto}}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title"><strong>Eliminar departamento</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4><strong>¿Estás seguro que deseas eliminar {{item.NombreDpto}} de la lista de departamentos?</strong></h4>
+                                    </div>
+                                    <div class="modal-footer" style="text-align: center">
+                                        <button type="button" class="btn btn-primary" (click)="OnDeleteDpto(item.IdDpto)" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

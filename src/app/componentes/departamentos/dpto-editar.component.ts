@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { SivanupService } from '../../servicios/sivanup.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Centros } from '../../models/centros';
+import { Dptos } from '../../models/dptos';
 import * as toastr from 'toastr';
 
 @Component({
-    selector: 'centros-editar',
-    templateUrl: './centro-nuevo.component.html',
+    selector: 'dpto-editar',
+    templateUrl: './dpto-nuevo.component.html',
     providers: [SivanupService]
   })
 
-  export class CentroEditar{
+  export class DptoEditar{
 
     public titulo: string;
-    public centro: Centros;
+    public dpto: Dptos;
     public editar: boolean;
 
     constructor(private _route: ActivatedRoute, private _router: Router, private _sivanupService: SivanupService)
     {
-        this.titulo = "Editar Centro";
-        this.centro = new Centros('0', '','', false);
+        this.titulo = "Editar Departamento";
+        this.dpto = new Dptos('0', '','', false);
         toastr.options = {
             "positionClass": "toast-top-right",
             "timeOut": "4000",
@@ -29,20 +29,20 @@ import * as toastr from 'toastr';
     ngOnInit()
     {
         this.editar = true;
-        this.getCentro();
+        this.getDpto();
     }
 
     
-    getCentro() {
+    getDpto() {
         this._route.params.forEach((params: Params) => {
             let id = params['id'];
 
-            this._sivanupService.getCentro(id).subscribe(
+            this._sivanupService.getDpto(id).subscribe(
                 response => {
                     if (response.code == 200) {
-                        this.centro = response.data;
+                        this.dpto = response.data;
                     } else {
-                        this._router.navigate(['/centro']);
+                        this._router.navigate(['/departamentos']);
                     }
                 },
                 error => {
@@ -52,14 +52,14 @@ import * as toastr from 'toastr';
         });
     }
 
-    updateCentro() {
+    updateDpto() {
         this._route.params.forEach((params: Params) => {
             let id = params['id'];
-            this._sivanupService.editCentro(id, this.centro).subscribe(
+            this._sivanupService.editDpto(id, this.dpto).subscribe(
                 response => {
                     if (response.code == 200) {
-                        toastr["success"]("Centro modificado correctamente", "");
-                        this._router.navigate(['/centros']);
+                        toastr["success"]("Departamento modificado correctamente", "");
+                        this._router.navigate(['/departamentos']);
                     } else {
                         console.log(response);
                     }

@@ -7,7 +7,10 @@ import { ToastModule } from 'ng2-toastr'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableModule } from 'angular2-datatable'
 import { DataTablesModule } from 'angular-datatables';
+
+// Filtros
 import { DataFilterPipe }   from './componentes/centros/centro-filter.pipe';
+import { DptoFilterPipe }   from './componentes/departamentos/dpto-filter.pipe';
 
 // Rutas
 import { routing, appRoutingProviders } from './app.routing';
@@ -19,9 +22,14 @@ import { LoginComponent } from './componentes/login/login.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { PrivadoComponent } from './componentes/privado/privado.component';
 import { ErrorComponent } from './componentes/error/error.component';
+
 import { CentrosComponent } from './componentes/centros/centros.component';
 import { CentroNuevo } from './componentes/centros/centro-nuevo.component';
 import { CentroEditar } from './componentes/centros/centro-editar.component';
+
+import { DptosComponent } from './componentes/departamentos/dptos.component';
+import { DptoNuevo } from './componentes/departamentos/dpto-nuevo.component';
+import { DptoEditar } from './componentes/departamentos/dpto-editar.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -46,7 +54,11 @@ import { AuthGuard } from './guards/auth.guard';
     CentrosComponent,
     DataFilterPipe,
     CentroNuevo,
-    CentroEditar
+    CentroEditar,
+    DptoFilterPipe,
+    DptosComponent,
+    DptoNuevo,
+    DptoEditar
   ],
   imports: [
     BrowserModule,

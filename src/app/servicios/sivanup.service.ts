@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/observable';
 import { Centros } from '../models/centros';
 import { Usuarios } from '../models/usuarios';
+import { Dptos } from '../models/dptos';
 
 @Injectable()
 export class SivanupService{
@@ -60,6 +61,39 @@ export class SivanupService{
     deleteCentro(id)
     {
         return this._http.get(this.url+'delete-centro/'+id).map(res=>res.json());
+    }
+
+    getDptos()
+    {
+        return this._http.get(this.url+'departamentos').map(res=>res.json());
+    }
+
+    getDpto(id)
+    {
+        return this._http.get(this.url+'departamento/'+id).map(res=>res.json());
+    }
+
+    addDpto(dpto: Dptos)
+    {
+        let json = JSON.stringify(dpto);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'departamento', params, {headers: headers}).map(res=>res.json());
+    }
+
+    editDpto(id, dpto: Dptos)
+    {
+        let json = JSON.stringify(dpto);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'update-dpto/'+id, params, {headers: headers}).map(res=>res.json());
+    }
+
+    deleteDpto(id)
+    {
+        return this._http.get(this.url+'delete-dpto/'+id).map(res=>res.json());
     }
 
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)

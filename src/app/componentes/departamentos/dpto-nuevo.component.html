@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="jumbotron">
+            <h3 class="text-center">{{titulo}}</h3>
+            <form #formDpto="ngForm">
+
+                <div class="form-group">
+                    <label>Nombre
+                        <span *ngIf="!NombreDpto.valid && NombreDpto.touched" class="alert-danger">
+                            <i class="fa fa-exclamation-circle"></i> El nombre es obligatorio</span>
+                    </label>
+                    <input type="NombreDpto" #NombreDpto="ngModel" name="NombreDpto" [(ngModel)]="dpto.NombreDpto" class="form-control text-uppercase"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Comentario">Comentario</label>
+                    <textarea type="text" name="Comentario" [(ngModel)]="dpto.Comentario" class="form-control text-uppercase"></textarea>
+                </div>
+                <div class="form-inline text-center">
+                    <input *ngIf="editar" type="button" value="Guardar" [disabled]="!formDpto.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#editarDpto">
+                    <input *ngIf="!editar" type="button" value="Guardar" [disabled]="!formDpto.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#nuevoDpto">
+                    <input [routerLink]="['/departamentos']" type="button" value="Volver a departamentos" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL GUARDAR DEPARTAMENTO -->
+<div class="modal fade" id="nuevoDpto" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><strong>Nuevo departamento</strong></h3>
+            </div>
+            <div class="modal-body">
+                <h4><strong>¿Estás seguro que deseas agregar este departamento?</strong></h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-primary" (click)="saveDpto()" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL EDITAR DEPARTAMENTO -->
+<div class="modal fade" id="editarDpto" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><strong>Editar departamento</strong></h3>
+                </div>
+                <div class="modal-body">
+                    <h4><strong>¿Estás seguro que deseas editar este departamento?</strong></h4>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-primary" (click)="updateDpto()" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
