@@ -16,6 +16,10 @@ import { DptosComponent } from './componentes/departamentos/dptos.component';
 import { DptoNuevo } from './componentes/departamentos/dpto-nuevo.component';
 import { DptoEditar } from './componentes/departamentos/dpto-editar.component';
 
+import { EncuestadoresComponent } from './componentes/encuestadores/encuestadores.component';
+import { EncuestadorNuevo } from './componentes/encuestadores/encuestadores-nuevo.component';
+import { EncuestadorEditar } from './componentes/encuestadores/encuestadores-editar.component';
+
 import { AuthGuard } from './guards/auth.guard'
 
 const appRoutes: Routes = [
@@ -30,6 +34,9 @@ const appRoutes: Routes = [
      {path: 'departamentos', component: DptosComponent, canActivate: [AuthGuard]},
      {path: 'nuevoDpto', component: DptoNuevo, canActivate: [AuthGuard]},
      {path: 'editarDpto/:id', component: DptoEditar, canActivate: [AuthGuard]},
+     {path: 'encuestadores', component: EncuestadoresComponent, canActivate: [AuthGuard]},
+     {path: 'nuevoEncuestador', component: EncuestadorNuevo, canActivate: [AuthGuard]},
+     {path: 'editarEncuestador/:id', component: EncuestadorEditar, canActivate: [AuthGuard]},
      {path: '**', component: ErrorComponent}
 ];
 

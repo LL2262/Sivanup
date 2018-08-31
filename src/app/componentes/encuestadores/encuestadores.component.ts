@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
 import { SivanupService } from '../../servicios/sivanup.service';
-import { Centros } from '../../models/centros';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as toastr from 'toastr';
 
 @Component({
-  selector: 'app-centros',
-  templateUrl: './centros.component.html',
+  selector: 'app-encuestadores',
+  templateUrl: './encuestadores.component.html',
   providers: [SivanupService]
 })
-export class CentrosComponent{
+export class EncuestadoresComponent{
 
 public titulo: string;
 public data;
 public buscador: string;
-public loading: boolean;
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _sivanupService: SivanupService)
   {
-    this.loading= true;
-    this.titulo = "Lista de Centros";
+    this.titulo = "Lista de Encuestadores";
     toastr.options = {
         "positionClass": "toast-top-right",
         "timeOut": "4000",
@@ -28,12 +25,12 @@ public loading: boolean;
 
   ngOnInit() 
   {
-    this.getCentros();
+    this.getEncuestadores();
   }
 
-  getCentros()
+  getEncuestadores()
     {
-        this._sivanupService.getCentros().subscribe(
+        this._sivanupService.getEncuestadores().subscribe(
             result => {
                 this.data = result.data;
             },
@@ -43,14 +40,14 @@ public loading: boolean;
         );
     }
 
-    OnDeleteCentro(id)
+    OnDeleteEncuestador(id)
     {
-            this._sivanupService.deleteCentro(id).subscribe(
+            this._sivanupService.deleteEncuestador(id).subscribe(
                 response => {
                     if (response.code == 200) {
                         console.log(response);
-                        toastr["success"]("Centro eliminado correctamente", "");
-                        this.getCentros();
+                        toastr["success"]("Encuestador eliminado correctamente", "");
+                        this.getEncuestadores();
                     } else {
                         console.log(response);
                     }

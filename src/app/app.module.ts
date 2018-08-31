@@ -11,6 +11,7 @@ import { DataTablesModule } from 'angular-datatables';
 // Filtros
 import { DataFilterPipe }   from './componentes/centros/centro-filter.pipe';
 import { DptoFilterPipe }   from './componentes/departamentos/dpto-filter.pipe';
+import { EncuestadoresFilterPipe }   from './componentes/encuestadores/encuestadores-filter.pipe';
 
 // Rutas
 import { routing, appRoutingProviders } from './app.routing';
@@ -30,6 +31,10 @@ import { CentroEditar } from './componentes/centros/centro-editar.component';
 import { DptosComponent } from './componentes/departamentos/dptos.component';
 import { DptoNuevo } from './componentes/departamentos/dpto-nuevo.component';
 import { DptoEditar } from './componentes/departamentos/dpto-editar.component';
+
+import { EncuestadoresComponent } from './componentes/encuestadores/encuestadores.component';
+import { EncuestadorNuevo } from './componentes/encuestadores/encuestadores-nuevo.component';
+import { EncuestadorEditar } from './componentes/encuestadores/encuestadores-editar.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -58,7 +63,11 @@ import { AuthGuard } from './guards/auth.guard';
     DptoFilterPipe,
     DptosComponent,
     DptoNuevo,
-    DptoEditar
+    DptoEditar,
+    EncuestadoresFilterPipe,
+    EncuestadoresComponent,
+    EncuestadorNuevo,
+    EncuestadorEditar
   ],
   imports: [
     BrowserModule,

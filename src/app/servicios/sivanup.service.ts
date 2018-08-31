@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/observable';
 import { Centros } from '../models/centros';
 import { Usuarios } from '../models/usuarios';
 import { Dptos } from '../models/dptos';
+import { Encuestadores } from '../models/encuestadores';
 
 @Injectable()
 export class SivanupService{
@@ -94,6 +95,39 @@ export class SivanupService{
     deleteDpto(id)
     {
         return this._http.get(this.url+'delete-dpto/'+id).map(res=>res.json());
+    }
+
+    getEncuestadores()
+    {
+        return this._http.get(this.url+'encuestadores').map(res=>res.json());
+    }
+
+    getEncuestador(id)
+    {
+        return this._http.get(this.url+'encuestador/'+id).map(res=>res.json());
+    }
+
+    addEncuestador(encuestador: Encuestadores)
+    {
+        let json = JSON.stringify(encuestador);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'encuestador', params, {headers: headers}).map(res=>res.json());
+    }
+
+    editEncuestador(id, encuestador: Encuestadores)
+    {
+        let json = JSON.stringify(encuestador);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'update-encuestador/'+id, params, {headers: headers}).map(res=>res.json());
+    }
+
+    deleteEncuestador(id)
+    {
+        return this._http.get(this.url+'delete-encuestador/'+id).map(res=>res.json());
     }
 
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)
