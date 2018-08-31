@@ -56,7 +56,7 @@ export class RegisterComponent{
                 }
             );
 
-      toastr["success"]("", "Usuario reado correctamente");
+      toastr["success"]("", "Usuario creado correctamente");
       this._router.navigate(['/privado']);      
     }).catch( (err) => {
       console.log(err.code)
