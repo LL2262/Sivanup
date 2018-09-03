@@ -13,6 +13,7 @@ import { DataFilterPipe }   from './componentes/centros/centro-filter.pipe';
 import { DptoFilterPipe }   from './componentes/departamentos/dpto-filter.pipe';
 import { EncuestadoresFilterPipe }   from './componentes/encuestadores/encuestadores-filter.pipe';
 import { EnfermedadesFilterPipe }   from './componentes/enfermedades/enfermedad-filter.pipe';
+import { ProgramaFilterPipe }   from './componentes/programas/programa-filter.pipe';
 
 // Rutas
 import { routing, appRoutingProviders } from './app.routing';
@@ -40,6 +41,10 @@ import { EncuestadorEditar } from './componentes/encuestadores/encuestadores-edi
 import { EnfermedadesComponent } from './componentes/enfermedades/enfermedades.component';
 import { EnfermedadNuevo } from './componentes/enfermedades/enfermedad-nuevo.component';
 import { EnfermedadEditar } from './componentes/enfermedades/enfermedad-editar.component';
+
+import { ProgramasComponent } from './componentes/programas/programas.component';
+import { ProgramaNuevo } from './componentes/programas/programa-nuevo.component';
+import { ProgramaEditar } from './componentes/programas/programa-editar.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -76,7 +81,11 @@ import { AuthGuard } from './guards/auth.guard';
     EnfermedadesFilterPipe,
     EnfermedadesComponent,
     EnfermedadNuevo,
-    EnfermedadEditar
+    EnfermedadEditar,
+    ProgramaFilterPipe,
+    ProgramasComponent,
+    ProgramaNuevo,
+    ProgramaEditar
   ],
   imports: [
     BrowserModule,

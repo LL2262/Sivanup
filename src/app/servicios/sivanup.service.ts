@@ -7,6 +7,7 @@ import { Usuarios } from '../models/usuarios';
 import { Dptos } from '../models/dptos';
 import { Encuestadores } from '../models/encuestadores';
 import { Enfermedades } from '../models/enfermedades';
+import { Programas } from '../models/programas';
 
 @Injectable()
 export class SivanupService{
@@ -162,6 +163,39 @@ export class SivanupService{
     deleteEnfermedad(id)
     {
         return this._http.get(this.url+'delete-enfermedad/'+id).map(res=>res.json());
+    }
+
+    getProgramas()
+    {
+        return this._http.get(this.url+'programas').map(res=>res.json());
+    }
+
+    getPrograma(id)
+    {
+        return this._http.get(this.url+'programa/'+id).map(res=>res.json());
+    }
+
+    addPrograma(programa: Programas)
+    {
+        let json = JSON.stringify(programa);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'programa', params, {headers: headers}).map(res=>res.json());
+    }
+
+    editPrograma(id, programa: Programas)
+    {
+        let json = JSON.stringify(programa);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'update-programa/'+id, params, {headers: headers}).map(res=>res.json());
+    }
+
+    deletePrograma(id)
+    {
+        return this._http.get(this.url+'delete-programa/'+id).map(res=>res.json());
     }
 
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)

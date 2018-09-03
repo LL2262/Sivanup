@@ -24,6 +24,10 @@ import { EnfermedadesComponent } from './componentes/enfermedades/enfermedades.c
 import { EnfermedadNuevo } from './componentes/enfermedades/enfermedad-nuevo.component';
 import { EnfermedadEditar } from './componentes/enfermedades/enfermedad-editar.component';
 
+import { ProgramasComponent } from './componentes/programas/programas.component';
+import { ProgramaNuevo } from './componentes/programas/programa-nuevo.component';
+import { ProgramaEditar } from './componentes/programas/programa-editar.component'
+
 import { AuthGuard } from './guards/auth.guard'
 
 const appRoutes: Routes = [
@@ -44,6 +48,9 @@ const appRoutes: Routes = [
      {path: 'enfermedades', component: EnfermedadesComponent, canActivate: [AuthGuard]},
      {path: 'nuevaEnfermedad', component: EnfermedadNuevo, canActivate: [AuthGuard]},
      {path: 'editarEnfermedad/:id', component: EnfermedadEditar, canActivate: [AuthGuard]},
+     {path: 'programas', component: ProgramasComponent, canActivate: [AuthGuard]},
+     {path: 'nuevoPrograma', component: ProgramaNuevo, canActivate: [AuthGuard]},
+     {path: 'editarPrograma/:id', component: ProgramaEditar, canActivate: [AuthGuard]},
      {path: '**', component: ErrorComponent}
 ];
 
