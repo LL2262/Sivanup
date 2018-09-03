@@ -20,6 +20,10 @@ import { EncuestadoresComponent } from './componentes/encuestadores/encuestadore
 import { EncuestadorNuevo } from './componentes/encuestadores/encuestadores-nuevo.component';
 import { EncuestadorEditar } from './componentes/encuestadores/encuestadores-editar.component';
 
+import { EnfermedadesComponent } from './componentes/enfermedades/enfermedades.component';
+import { EnfermedadNuevo } from './componentes/enfermedades/enfermedad-nuevo.component';
+import { EnfermedadEditar } from './componentes/enfermedades/enfermedad-editar.component';
+
 import { AuthGuard } from './guards/auth.guard'
 
 const appRoutes: Routes = [
@@ -37,6 +41,9 @@ const appRoutes: Routes = [
      {path: 'encuestadores', component: EncuestadoresComponent, canActivate: [AuthGuard]},
      {path: 'nuevoEncuestador', component: EncuestadorNuevo, canActivate: [AuthGuard]},
      {path: 'editarEncuestador/:id', component: EncuestadorEditar, canActivate: [AuthGuard]},
+     {path: 'enfermedades', component: EnfermedadesComponent, canActivate: [AuthGuard]},
+     {path: 'nuevaEnfermedad', component: EnfermedadNuevo, canActivate: [AuthGuard]},
+     {path: 'editarEnfermedad/:id', component: EnfermedadEditar, canActivate: [AuthGuard]},
      {path: '**', component: ErrorComponent}
 ];
 

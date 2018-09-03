@@ -1,0 +1,232 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="jumbotron">
+            <h3 class="text-center">{{titulo}}</h3>
+
+            <div class="text-center" *ngIf="!data">
+                <img src="../../../assets/bootstrap/img/load.gif" style="width: 100px">            
+            </div>
+
+            <div class="table-responsive" *ngIf="data">
+                <div class="form-inline">
+                    <button type="button" class="btn btn-primary" [routerLink]="['/nuevaEnfermedad']">Nueva Enfermedad</button>
+                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Enfermedad" [(ngModel)]="buscador" style="width: 400px;"
+                    />
+                </div>
+                <table class="table" [mfData]="data | FiltroEnfermedades:buscador" #mf="mfDataTable" [mfRowsOnPage]="10">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="text-center">Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of mf.data">
+                        <tr>
+                            <th scope="row">{{item.IdEnfermedad}}</th>
+                            <td>{{item.NombreEnfermedad}}</td>
+                            <td class="text-right col-sm-3 col-md-3">
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" attr.data-target="#detalle{{item.IdEnfermedad}}"><i class="fa fa-search-plus"></i></button>
+                                <b> |</b>
+                                <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/editarEnfermedad/', item.IdEnfermedad]"><i class="fa fa-edit"></i></button>
+                                <b> |</b>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" attr.data-target="#eliminar{{item.IdEnfermedad}}"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <!-- MODAL DETALLE ENFERMEDAD -->
+                        <div class="modal fade" id="detalle{{item.IdEnfermedad}}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title"><strong>Detalle de la enfermedad</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            <label><h4><strong>Número: </strong></h4></label>
+                                            {{item.IdEnfermedad}}
+                                        </div>
+                                        <div>
+                                            <label><h4><strong>Nombre: </strong></h4></label>
+                                            {{item.NombreEnfermedad}}
+                                        </div>
+                                        <div>
+                                            <label><h4><strong>Comentario: </strong></h4></label>
+                                            {{item.Comentario}}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" style="text-align: center">
+                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ELIMINAR ENFERMEDAD -->
+                        <div class="modal fade" id="eliminar{{item.IdEnfermedad}}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title"><strong>Eliminar enfermedad</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4><strong>¿Estás seguro que deseas eliminar {{item.NombreEnfermedad}} de la lista de enfermedades?</strong></h4>
+                                    </div>
+                                    <div class="modal-footer" style="text-align: center">
+                                        <button type="button" class="btn btn-primary" (click)="OnDeleteEnfermedad(item.IdEnfermedad)" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+  <!-- <div class="card form-card">
+      <div class="text-center">
+          <h3>@ViewData["Title"]</h3>
+          <h5 class="text-muted">Estas son las solicitudes de adopción que recibiste</h5>
+      </div>
+      <table class="table table-responsive">
+          <thead>
+              <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Fecha</th>
+                  <th class="text-center">Mascota</th>
+                  <th class="text-center">Usuario</th>
+                  <th class="text-center">Estado solicitud</th>
+                  <th class="text-center">Estado adopción</th>
+                  <th></th>
+              </tr>
+          </thead>
+          @if (Model.solicitudes != null)
+          {
+              foreach (var item in Model.solicitudes)
+              {
+                  Model.contador++;
+                  <tbody class="text-center">
+                      <tr>
+                          <th scope="row">@Model.contador</th>
+                          <td>@Html.DisplayFor(modelItem => item.fechaSolicitud)</td>
+                          <td><img width='50' ; height='50' src="@Url.Content("/imagenesSubidas/" + item.adopcion.mascota.FotoPerfil.ubicacionImagen)" /> @Html.DisplayFor(modelItem => item.adopcion.mascota.nombre)</td>
+                          <td><b>@Html.DisplayFor(modelItem => item.usuario.nombre) @item.usuario.apellido</b> (@item.usuario.UserName)</td>
+                          <td>@Html.DisplayFor(modelItem => item.estado.nombre)</td>
+                          <td>@Html.DisplayFor(modelItem => item.adopcion.estado.nombre)</td>
+                          <td>
+                              @{ if (item.estado.nombre == "Rechazada" || item.estado.nombre == "Aceptada")
+                                  {
+                                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#@item.ID@item.ID@item.ID">Eliminar</button>
+                                  }
+                                  else
+                                  {
+                                      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#@item.ID">Aceptar</button><b> |</b>
+                                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#@item.ID@item.ID">Rechazar</button>
+                                  }
+                              }
+                          </td>
+                      </tr>
+                  </tbody> -->
+                   <!-- ACEPTAR SOLICITUD -->
+                                  <!-- <div class="modal fade" id="@item.ID" role="dialog">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-footer headtalis">
+                                                  <h3 class="modal-title text-info text-center">Aceptar solicitud de adopción</h3>
+                                                  <hr class="huellatop" />
+                                              </div>
+                                              <div class="modal-body">
+                                                  <h4 class="text-center">¿Querés que <b>@item.usuario.nombre @item.usuario.apellido</b> (@item.usuario.UserName) sea el nuevo dueño de <b>@item.adopcion.mascota.nombre?</b></h4>
+                                                  <p class="text-center"> Al aceptar, las demás solicitudes que pertenecen a esta adopción serán rechazadas</p>
+                                                  <p class="text-center text-danger small">Seguirás siendo amigo de <b>@item.adopcion.mascota.nombre</b></p>
+                                              </div>
+                                              <div class="modal-footer footalis" id="footalis">
+                                                  <hr class="huellafoot" />
+                                                  <div class="btn-toolbar, text-center" role="toolbar">
+                                                      <div class="btn-group">
+                                                          @using (Html.BeginForm("aceptarSolicitud", "Adopcion", new { id = item.ID }))
+                                                          {
+                                                              <button class="btn btn-success" type="submit">Si</button>
+                                                          }
+                                                      </div>
+                                                      <div class="btn-group">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div> -->
+                                  <!-- RECHAZAR SOLICITUD -->
+                                  <!-- <div class="modal fade" id="@item.ID@item.ID" role="dialog">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-footer headtalis">
+                                                  <h3 class="modal-title text-info text-center">Rechazar solicitud de adopción</h3>
+                                                  <hr class="huellatop" />
+                                              </div>
+                                              <div class="modal-body">
+                                                  <h4 class="text-center">¿Estás seguro de rechazar esta solicitud?</h4>
+                                              </div>
+                                              <div class="modal-footer footalis" id="footalis">
+                                                  <hr class="huellafoot" />
+                                                  <div class="btn-toolbar, text-center" role="toolbar">
+                                                      <div class="btn-group">
+                                                          @using (Html.BeginForm("rechazarSolicitud", "Adopcion", new { id = item.ID }))
+                                                          {
+                                                              <button class="btn btn-success" type="submit">Si</button>
+                                                          }
+                                                      </div>
+                                                      <div class="btn-group">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div> -->
+                                  <!-- ELIMINAR SOLICITUD -->
+                                  <!-- <div class="modal fade" id="@item.ID@item.ID@item.ID" role="dialog">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-footer headtalis">
+                                                  <h3 class="modal-title text-info text-center">Eliminar solicitud de adopción rechazada</h3>
+                                                  <hr class="huellatop" />
+                                              </div>
+                                              <div class="modal-body">
+                                                  <h4 class="text-center">¿Estás seguro de eliminar esta solicitud?</h4>
+                                              </div>
+                                              <div class="modal-footer footalis" id="footalis">
+                                                  <hr class="huellafoot" />
+                                                  <div class="btn-toolbar, text-center" role="toolbar">
+                                                      <div class="btn-group">
+                                                          @using (Html.BeginForm("eliminarSolicitud", "Adopcion", new { id = item.ID }))
+                                                          {
+                                                              <button class="btn btn-success" type="submit">Si</button>
+                                                          }
+                                                      </div>
+                                                      <div class="btn-group">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                         
+                                      }
+  
+                                  }
+  
+      </table> -->

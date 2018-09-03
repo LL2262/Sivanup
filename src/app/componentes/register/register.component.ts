@@ -44,7 +44,6 @@ export class RegisterComponent{
 
     this._authService.registerUser(this.usuario.EmailUsuario, this.usuario.PasswordUsuario)
     .then( (res) => {
-
       this._sivanupService.addUsuario(this.usuario).subscribe(
         response => {
             if (response.code == 404) {

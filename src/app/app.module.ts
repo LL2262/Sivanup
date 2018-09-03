@@ -12,6 +12,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { DataFilterPipe }   from './componentes/centros/centro-filter.pipe';
 import { DptoFilterPipe }   from './componentes/departamentos/dpto-filter.pipe';
 import { EncuestadoresFilterPipe }   from './componentes/encuestadores/encuestadores-filter.pipe';
+import { EnfermedadesFilterPipe }   from './componentes/enfermedades/enfermedad-filter.pipe';
 
 // Rutas
 import { routing, appRoutingProviders } from './app.routing';
@@ -35,6 +36,10 @@ import { DptoEditar } from './componentes/departamentos/dpto-editar.component';
 import { EncuestadoresComponent } from './componentes/encuestadores/encuestadores.component';
 import { EncuestadorNuevo } from './componentes/encuestadores/encuestadores-nuevo.component';
 import { EncuestadorEditar } from './componentes/encuestadores/encuestadores-editar.component';
+
+import { EnfermedadesComponent } from './componentes/enfermedades/enfermedades.component';
+import { EnfermedadNuevo } from './componentes/enfermedades/enfermedad-nuevo.component';
+import { EnfermedadEditar } from './componentes/enfermedades/enfermedad-editar.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -67,7 +72,11 @@ import { AuthGuard } from './guards/auth.guard';
     EncuestadoresFilterPipe,
     EncuestadoresComponent,
     EncuestadorNuevo,
-    EncuestadorEditar
+    EncuestadorEditar,
+    EnfermedadesFilterPipe,
+    EnfermedadesComponent,
+    EnfermedadNuevo,
+    EnfermedadEditar
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { Centros } from '../models/centros';
 import { Usuarios } from '../models/usuarios';
 import { Dptos } from '../models/dptos';
 import { Encuestadores } from '../models/encuestadores';
+import { Enfermedades } from '../models/enfermedades';
 
 @Injectable()
 export class SivanupService{
@@ -128,6 +129,39 @@ export class SivanupService{
     deleteEncuestador(id)
     {
         return this._http.get(this.url+'delete-encuestador/'+id).map(res=>res.json());
+    }
+
+    getEnfermedades()
+    {
+        return this._http.get(this.url+'enfermedades').map(res=>res.json());
+    }
+
+    getEnfermedad(id)
+    {
+        return this._http.get(this.url+'enfermedad/'+id).map(res=>res.json());
+    }
+
+    addEnfermedad(enfermedad: Enfermedades)
+    {
+        let json = JSON.stringify(enfermedad);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'enfermedad', params, {headers: headers}).map(res=>res.json());
+    }
+
+    editEnfermedad(id, enfermedad: Enfermedades)
+    {
+        let json = JSON.stringify(enfermedad);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'update-enfermedad/'+id, params, {headers: headers}).map(res=>res.json());
+    }
+
+    deleteEnfermedad(id)
+    {
+        return this._http.get(this.url+'delete-enfermedad/'+id).map(res=>res.json());
     }
 
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)

@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="jumbotron">
+            <h3 class="text-center">{{titulo}}</h3>
+            <form #formEnfermedad="ngForm">
+
+                <div class="form-group">
+                    <label>Nombre
+                        <span *ngIf="!NombreEnfermedad.valid && NombreEnfermedad.touched" class="alert-danger">
+                            <i class="fa fa-exclamation-circle"></i> El nombre es obligatorio</span>
+                    </label>
+                    <input type="NombreEnfermedad" #NombreEnfermedad="ngModel" name="NombreEnfermedad" [(ngModel)]="enfermedad.NombreEnfermedad" class="form-control text-uppercase"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Comentario">Comentario</label>
+                    <textarea type="text" name="Comentario" [(ngModel)]="enfermedad.Comentario" class="form-control text-uppercase"></textarea>
+                </div>
+                <div class="form-inline text-center">
+                    <input *ngIf="editar" type="button" value="Guardar" [disabled]="!formEnfermedad.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#editarEnfermedad">
+                    <input *ngIf="!editar" type="button" value="Guardar" [disabled]="!formEnfermedad.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#nuevoEnfermedad">
+                    <input [routerLink]="['/enfermedades']" type="button" value="Volver a enfermedades" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL GUARDAR ENFERMEDAD -->
+<div class="modal fade" id="nuevoEnfermedad" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><strong>Nueva enfermedad</strong></h3>
+            </div>
+            <div class="modal-body">
+                <h4><strong>¿Estás seguro que deseas agregar esta enfermedad?</strong></h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-primary" (click)="saveEnfermedad()" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL EDITAR ENFERMEDAD -->
+<div class="modal fade" id="editarEnfermedad" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><strong>Editar enfermedad</strong></h3>
+                </div>
+                <div class="modal-body">
+                    <h4><strong>¿Estás seguro que deseas editar esta enfermedad?</strong></h4>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-primary" (click)="updateEnfermedad()" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>

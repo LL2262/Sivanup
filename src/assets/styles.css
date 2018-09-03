@@ -88,8 +88,14 @@ Centrar toda la seccion
 }
 
 .navbar-inverse .navbar-nav>li>a {
-    color: #eee;
+    color: #9d9d9d;
 }
+
+.navbar-inverse .navbar-nav>li>a:hover{
+    transition: 300ms ease;
+}
+
+
 
 /* .dropdown .dropdown-menu{
     display: block; 
