@@ -8,6 +8,7 @@ import { Dptos } from '../models/dptos';
 import { Encuestadores } from '../models/encuestadores';
 import { Enfermedades } from '../models/enfermedades';
 import { Programas } from '../models/programas';
+import { Territorios } from '../models/territorios';
 
 @Injectable()
 export class SivanupService{
@@ -196,6 +197,39 @@ export class SivanupService{
     deletePrograma(id)
     {
         return this._http.get(this.url+'delete-programa/'+id).map(res=>res.json());
+    }
+
+    getTerritorios()
+    {
+        return this._http.get(this.url+'territorios').map(res=>res.json());
+    }
+
+    getTerritorio(id)
+    {
+        return this._http.get(this.url+'territorio/'+id).map(res=>res.json());
+    }
+
+    addTerritorio(territorio: Territorios)
+    {
+        let json = JSON.stringify(territorio);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'territorio', params, {headers: headers}).map(res=>res.json());
+    }
+
+    editTerritorio(id, territorio: Territorios)
+    {
+        let json = JSON.stringify(territorio);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'update-territorio/'+id, params, {headers: headers}).map(res=>res.json());
+    }
+
+    deleteTerritorio(id)
+    {
+        return this._http.get(this.url+'delete-territorio/'+id).map(res=>res.json());
     }
 
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)

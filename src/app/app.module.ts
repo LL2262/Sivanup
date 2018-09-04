@@ -14,6 +14,7 @@ import { DptoFilterPipe }   from './componentes/departamentos/dpto-filter.pipe';
 import { EncuestadoresFilterPipe }   from './componentes/encuestadores/encuestadores-filter.pipe';
 import { EnfermedadesFilterPipe }   from './componentes/enfermedades/enfermedad-filter.pipe';
 import { ProgramaFilterPipe }   from './componentes/programas/programa-filter.pipe';
+import { TerritorioFilterPipe }   from './componentes/territorios/territorio-filter.pipe';
 
 // Rutas
 import { routing, appRoutingProviders } from './app.routing';
@@ -45,6 +46,10 @@ import { EnfermedadEditar } from './componentes/enfermedades/enfermedad-editar.c
 import { ProgramasComponent } from './componentes/programas/programas.component';
 import { ProgramaNuevo } from './componentes/programas/programa-nuevo.component';
 import { ProgramaEditar } from './componentes/programas/programa-editar.component';
+
+import { TerritoriosComponent } from './componentes/territorios/territorios.component';
+import { TerritorioNuevo } from './componentes/territorios/territorio-nuevo.component';
+import { TerritorioEditar } from './componentes/territorios/territorio-editar.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -85,7 +90,11 @@ import { AuthGuard } from './guards/auth.guard';
     ProgramaFilterPipe,
     ProgramasComponent,
     ProgramaNuevo,
-    ProgramaEditar
+    ProgramaEditar,
+    TerritorioFilterPipe,
+    TerritoriosComponent,
+    TerritorioNuevo,
+    TerritorioEditar
   ],
   imports: [
     BrowserModule,

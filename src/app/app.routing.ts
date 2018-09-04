@@ -26,7 +26,11 @@ import { EnfermedadEditar } from './componentes/enfermedades/enfermedad-editar.c
 
 import { ProgramasComponent } from './componentes/programas/programas.component';
 import { ProgramaNuevo } from './componentes/programas/programa-nuevo.component';
-import { ProgramaEditar } from './componentes/programas/programa-editar.component'
+import { ProgramaEditar } from './componentes/programas/programa-editar.component';
+
+import { TerritoriosComponent } from './componentes/territorios/territorios.component';
+import { TerritorioNuevo } from './componentes/territorios/territorio-nuevo.component';
+import { TerritorioEditar } from './componentes/territorios/territorio-editar.component';
 
 import { AuthGuard } from './guards/auth.guard'
 
@@ -51,6 +55,9 @@ const appRoutes: Routes = [
      {path: 'programas', component: ProgramasComponent, canActivate: [AuthGuard]},
      {path: 'nuevoPrograma', component: ProgramaNuevo, canActivate: [AuthGuard]},
      {path: 'editarPrograma/:id', component: ProgramaEditar, canActivate: [AuthGuard]},
+     {path: 'territorios', component: TerritoriosComponent, canActivate: [AuthGuard]},
+     {path: 'nuevoTerritorio', component: TerritorioNuevo, canActivate: [AuthGuard]},
+     {path: 'editarTerritorio/:id', component: TerritorioEditar, canActivate: [AuthGuard]},
      {path: '**', component: ErrorComponent}
 ];
 

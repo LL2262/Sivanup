@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="jumbotron">
+            <h3 class="text-center">{{titulo}}</h3>
+            <form #formTerritorio="ngForm">
+
+                <div class="form-group">
+                    <label>Nombre
+                        <span *ngIf="!NombreTerritorio.valid && NombreTerritorio.touched" class="alert-danger">
+                            <i class="fa fa-exclamation-circle"></i> El nombre es obligatorio</span>
+                    </label>
+                    <input type="NombreTerritorio" #NombreTerritorio="ngModel" name="NombreTerritorio" [(ngModel)]="territorio.NombreTerritorio" class="form-control text-uppercase"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Comentario">Comentario</label>
+                    <textarea type="text" name="Comentario" [(ngModel)]="territorio.Comentario" class="form-control text-uppercase"></textarea>
+                </div>
+                <div class="form-inline text-center">
+                    <input *ngIf="editar" type="button" value="Guardar" [disabled]="!formTerritorio.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#editarTerritorio">
+                    <input *ngIf="!editar" type="button" value="Guardar" [disabled]="!formTerritorio.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#nuevoTerritorio">
+                    <input [routerLink]="['/territorios']" type="button" value="Volver a territorios" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL GUARDAR TERRITORIO -->
+<div class="modal fade" id="nuevoTerritorio" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><strong>Nuevo territorio</strong></h3>
+            </div>
+            <div class="modal-body">
+                <h4><strong>¿Estás seguro que deseas agregar este territorio?</strong></h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-primary" (click)="saveTerritorio()" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL EDITAR TERRITORIO -->
+<div class="modal fade" id="editarTerritorio" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><strong>Editar territorio</strong></h3>
+                </div>
+                <div class="modal-body">
+                    <h4><strong>¿Estás seguro que deseas editar este territorio?</strong></h4>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-primary" (click)="updateTerritorio()" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
