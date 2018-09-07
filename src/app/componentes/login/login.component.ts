@@ -23,9 +23,12 @@ export class LoginComponent{
   {
     this.titulo="LOGIN"
     toastr.options = {
-      "positionClass": "toast-top-center",
+      "positionClass": "toast-top-right",
       "timeOut": "2000",
     }
+    
+    this.usuario=new Usuarios('0','','','',false,'','','',0,null, null, false);
+    
   }
 
   ngOnInit() 
@@ -35,7 +38,50 @@ export class LoginComponent{
 
   onSubmitLogin()
   {
-    this.traerUsuario();
+    this.traerUsuario(); 
+  }
+
+  enviarCorreo() {
+    this._sivanupService.email(this.usuario).subscribe(
+      result => {
+        if (result) {
+          console.log(result.message);
+        }
+      },
+      err => {
+        console.log("Error grave");
+      }
+    );
+
+  }
+
+  traerUsuario() {
+    this._sivanupService.getUsuario(this.email).subscribe(
+      result => {
+        if (result.code == 200) {
+          this.usuario = result.data;
+          if (this.usuario.EmailVerificated == false) {
+            toastr["error"]("El administrador aun no dio de alta su sesión", "Error");
+          }
+          else {
+            this.loginEmail();
+            console.log(this.usuario.EmailVerificated);
+          }
+        }
+        else {
+          toastr["error"]("Datos invalidos", "Error");
+          this._router.navigate(['/login']);
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    );
+
+  }
+
+  loginEmail()
+  {
     this._authService.loginEmail(this.email, this.password)
     .then( (res) => {
       toastr["success"](this.usuario.NombreUsuario, "Hola!");
@@ -45,18 +91,6 @@ export class LoginComponent{
       this._router.navigate(['/login']);  
     });
   }
-
-  traerUsuario()
-    {
-        this._sivanupService.getUsuario(this.email).subscribe(
-            result => {         
-              this.usuario = result.data;
-            },
-            error => {
-              console.log(<any>error);
-            }
-        );
-    }
 
   onClickGoogleLogin()
   {

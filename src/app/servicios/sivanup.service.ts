@@ -20,6 +20,17 @@ export class SivanupService{
         this.url = 'http://localhost/Sivanup-backend/index.php/' 
     }
 
+    email(usuario: Usuarios)
+    {
+        let json = JSON.stringify(usuario);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        console.log(usuario.EmailUsuario);
+
+        return this._http.post(this.url+'mail', params, {headers: headers}).map(res=>res.json());
+    }
+
     addUsuario(usuario: Usuarios)
     {
         let json = JSON.stringify(usuario);

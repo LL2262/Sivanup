@@ -24,10 +24,10 @@ export class RegisterComponent{
   { 
     this.titulo = "REGISTRO"
     toastr.options = {
-      "positionClass": "toast-top-center",
-      "timeOut": "2000",
+      "positionClass": "toast-top-right",
+      "timeOut": "4000",
     }
-    this.usuario=new Usuarios('0','','','','','','',0,null, null, false);
+    this.usuario=new Usuarios('0','','','',false,'','','',0,null, null, false);
   }
 
   ngOnInit() 
@@ -55,8 +55,9 @@ export class RegisterComponent{
                 }
             );
 
-      toastr["success"]("", "Usuario creado correctamente");
-      this._router.navigate(['/privado']);      
+      this._authService.logout();
+      toastr["success"]("", "Usuario creado correctamente, su sesión sera activada por el administrador");
+      this._router.navigate(['/login']);      
     }).catch( (err) => {
       console.log(err.code)
       if(err.code=="auth/email-already-in-use"){

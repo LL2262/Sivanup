@@ -5,6 +5,7 @@ export class Usuarios{
         public NombreUsuario: string,
         public ApellidoUsuario: string,
         public EmailUsuario:string,
+        public EmailVerificated: boolean,
         public PasswordUsuario: string,
         public Documento: string,
         public TelefonoUsuario: string,
