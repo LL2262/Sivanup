@@ -26,10 +26,9 @@ export class SivanupService{
         let params = 'json=' + json;
         let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-        console.log(usuario.EmailUsuario);
-
         return this._http.post(this.url+'mail', params, {headers: headers}).map(res=>res.json());
     }
+
 
     addUsuario(usuario: Usuarios)
     {

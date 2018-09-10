@@ -55,6 +55,9 @@ export class LoginComponent{
 
   }
 
+  enviarSms() {
+  }
+
   traerUsuario() {
     this._sivanupService.getUsuario(this.email).subscribe(
       result => {
