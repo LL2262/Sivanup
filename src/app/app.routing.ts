@@ -32,6 +32,8 @@ import { TerritoriosComponent } from './componentes/territorios/territorios.comp
 import { TerritorioNuevo } from './componentes/territorios/territorio-nuevo.component';
 import { TerritorioEditar } from './componentes/territorios/territorio-editar.component';
 
+import { AdminUsers } from './componentes/administrar/admin-users.component';
+
 import { AuthGuard } from './guards/auth.guard'
 
 const appRoutes: Routes = [
@@ -58,6 +60,7 @@ const appRoutes: Routes = [
      {path: 'territorios', component: TerritoriosComponent, canActivate: [AuthGuard]},
      {path: 'nuevoTerritorio', component: TerritorioNuevo, canActivate: [AuthGuard]},
      {path: 'editarTerritorio/:id', component: TerritorioEditar, canActivate: [AuthGuard]},
+     {path: 'adminUsers', component: AdminUsers, canActivate: [AuthGuard]},
      {path: '**', component: ErrorComponent}
 ];
 

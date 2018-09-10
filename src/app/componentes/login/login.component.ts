@@ -1,8 +1,7 @@
-import { Component, ViewContainerRef} from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { SivanupService } from '../../servicios/sivanup.service';
 import { Router } from '@angular/router';
-import { messaging } from 'firebase';
 import * as toastr from 'toastr';
 import { Usuarios } from '../../models/usuarios';
 
@@ -68,7 +67,6 @@ export class LoginComponent{
           }
           else {
             this.loginEmail();
-            console.log(this.usuario.EmailVerificated);
           }
         }
         else {
@@ -87,7 +85,7 @@ export class LoginComponent{
   {
     this._authService.loginEmail(this.email, this.password)
     .then( (res) => {
-      toastr["success"](this.usuario.NombreUsuario, "Hola!");
+      toastr["success"](this.usuario.NombreUsuario, "Hola!", { positionClass: 'toast-top-center', timeOut: '3000' });
       this._router.navigate(['/privado']); 
     }).catch( (err) => {
       toastr["error"]("Datos invalidos", "Error");

@@ -55,6 +55,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
+import{ AdminUsers } from './componentes/administrar/admin-users.component';
+
 // Servicios
 import { AuthService } from './servicios/auth.service';
 import { SivanupService } from './servicios/sivanup.service';
@@ -94,7 +96,8 @@ import { AuthGuard } from './guards/auth.guard';
     TerritorioFilterPipe,
     TerritoriosComponent,
     TerritorioNuevo,
-    TerritorioEditar
+    TerritorioEditar,
+    AdminUsers
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+<div *ngIf="!isAdmin" class="col-lg-6 col-lg-offset-3 text-center">
+    <div class="jumbotron">
+        <h1>Error!</h1>
+        <h2>Pagina no encontrada</h2>
+        <p>
+            <a [routerLink]="['/home']" [routerLinkActive]="['activado']" class="btn btn-lg btn-primary">
+                <span class="glyphicon glyphicon-home"></span> Volver a Home</a>
+        </p>
+    </div>
+</div>
+
+<div *ngIf="isAdmin" class="col-lg-6 col-lg-offset-3 text-center">
+    <div class="jumbotron">
+        <h1>{{titulo}}</h1>
+        <p>
+            <a [routerLink]="['/home']" [routerLinkActive]="['activado']" class="btn btn-lg btn-primary">
+                <span class="glyphicon glyphicon-home"></span> Volver a Home</a>
+        </p>
+    </div>
+</div>

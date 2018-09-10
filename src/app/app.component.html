@@ -56,6 +56,10 @@
                         <a href="#">
                             <i class="fa fa-edit"></i> Encuestas</a>
                     </li>
+                    <li *ngIf="isLogin && usuario.IdPermiso == 1">
+                        <a [routerLink]="['/adminUsers']">
+                            <i class="fa fa-edit"></i> Administrar</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li *ngIf="!isLogin">
