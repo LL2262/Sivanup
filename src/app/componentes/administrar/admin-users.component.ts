@@ -13,6 +13,7 @@ export class AdminUsers{
   public isAdmin: boolean;
   public emailUsuario: string;
   public usuarioAdmin: Usuarios;
+  public data;
 
 
   constructor(private _authService: AuthService, private _sivanupService: SivanupService) 
@@ -35,5 +36,19 @@ export class AdminUsers{
           });
         }
       });
+
+      this.getCentros();
   }
+
+  getCentros()
+    {
+        this._sivanupService.getUsuarios().subscribe(
+            result => {
+                this.data = result.data;
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
+    }
 }

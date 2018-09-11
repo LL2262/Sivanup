@@ -9,12 +9,103 @@
     </div>
 </div>
 
-<div *ngIf="isAdmin" class="col-lg-6 col-lg-offset-3 text-center">
-    <div class="jumbotron">
-        <h1>{{titulo}}</h1>
-        <p>
-            <a [routerLink]="['/home']" [routerLinkActive]="['activado']" class="btn btn-lg btn-primary">
-                <span class="glyphicon glyphicon-home"></span> Volver a Home</a>
-        </p>
+<div *ngIf="isAdmin" class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="jumbotron">
+            <h3 class="text-center">{{titulo}}</h3>
+
+            <div class="text-center" *ngIf="!data">
+                <img src="../../../assets/bootstrap/img/load.gif" style="width: 100px">            
+            </div>
+
+            <div class="table-responsive" *ngIf="data">
+                <div class="form-inline">
+                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Usuario" [(ngModel)]="buscador" style="width: 500px;"
+                    />
+                </div>
+                <table class="table" [mfData]="data | FiltroUsuarios:buscador" #mf="mfDataTable" [mfRowsOnPage]="10">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Apellido</th>
+                            <th>Nombre</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Permiso</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of mf.data">
+                        <tr>
+                            <th scope="row">{{item.IdUsuario}}</th>
+                            <td>{{item.ApellidoUsuario}}</td>
+                            <td>{{item.NombreUsuario}}</td>
+                            <td>{{item.EmailUsuario}}</td>
+                            <td class="text-center">
+                                <button *ngIf="item.EmailVerificated == 0" type="button" class="btn btn-primary" (click)="HabilitarDeshabilitar(item.IdUsuario)" >Verificar</button>
+                                <label *ngIf="item.EmailVerificated == 1">Verificado</label>
+                            </td>
+                            <td class="text-center">{{item.NombrePermiso}}</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" attr.data-target="#detalle{{item.IdUsuario}}"><i class="fa fa-search-plus"></i></button>
+                                <b> |</b>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" attr.data-target="#eliminar{{item.IdUsuario}}"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <!-- MODAL DETALLE CENTRO -->
+                        <div class="modal fade" id="detalle{{item.IdUsuario}}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title"><strong>Detalle del usuario</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            <label><h4><strong>Identificador: </strong></h4></label>
+                                            {{item.IdUsuario}}
+                                        </div>
+                                        <div>
+                                            <label><h4><strong>Apellido y Nombre: </strong></h4></label>
+                                            {{item.ApellidoUsuario}} {{item.NombreUsuario}} 
+                                        </div>
+                                        <div>
+                                            <label><h4><strong>Email: </strong></h4></label>
+                                            {{item.EmailUsuario}}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" style="text-align: center">
+                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ELIMINAR CENTRO -->
+                        <div class="modal fade" id="eliminar{{item.IdUsuario}}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title"><strong>Eliminar usuario</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4><strong>¿Estás seguro que deseas eliminar {{item.NombreCentro}} de la lista de usuarios?</strong></h4>
+                                    </div>
+                                    <div class="modal-footer" style="text-align: center">
+                                        <button type="button" class="btn btn-primary" (click)="OnDeleteUsuario(item.IdUsuario)" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

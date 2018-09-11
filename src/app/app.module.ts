@@ -15,6 +15,7 @@ import { EncuestadoresFilterPipe }   from './componentes/encuestadores/encuestad
 import { EnfermedadesFilterPipe }   from './componentes/enfermedades/enfermedad-filter.pipe';
 import { ProgramaFilterPipe }   from './componentes/programas/programa-filter.pipe';
 import { TerritorioFilterPipe }   from './componentes/territorios/territorio-filter.pipe';
+import { UsuariosFilterPipe }   from './componentes/administrar/usuarios-filter.pipe';
 
 // Rutas
 import { routing, appRoutingProviders } from './app.routing';
@@ -97,7 +98,8 @@ import { AuthGuard } from './guards/auth.guard';
     TerritoriosComponent,
     TerritorioNuevo,
     TerritorioEditar,
-    AdminUsers
+    AdminUsers,
+    UsuariosFilterPipe
   ],
   imports: [
     BrowserModule,

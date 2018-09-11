@@ -29,6 +29,15 @@ export class SivanupService{
         return this._http.post(this.url+'mail', params, {headers: headers}).map(res=>res.json());
     }
 
+    getUsuarios()
+    {
+        return this._http.get(this.url+'usuarios').map(res=>res.json());
+    }
+
+    getUsuario(email)
+    {
+        return this._http.get(this.url+'usuarioLog/'+email).map(res=>res.json());
+    }
 
     addUsuario(usuario: Usuarios)
     {
@@ -37,11 +46,6 @@ export class SivanupService{
         let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
         return this._http.post(this.url+'usuario', params, {headers: headers}).map(res=>res.json());
-    }
-
-    getUsuario(email)
-    {
-        return this._http.get(this.url+'usuarioLog/'+email).map(res=>res.json());
     }
 
     getCentros()
