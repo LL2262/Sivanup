@@ -12,5 +12,6 @@ export class UsuariosFilterPipe implements PipeTransform {
 
         return usuarios.filter(employee =>
             employee.NombreUsuario.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
+
     }
 }

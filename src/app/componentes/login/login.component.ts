@@ -40,23 +40,6 @@ export class LoginComponent{
     this.traerUsuario(); 
   }
 
-  enviarCorreo() {
-    this._sivanupService.email(this.usuario).subscribe(
-      result => {
-        if (result) {
-          console.log(result.message);
-        }
-      },
-      err => {
-        console.log("Error grave");
-      }
-    );
-
-  }
-
-  enviarSms() {
-  }
-
   traerUsuario() {
     this._sivanupService.getUsuario(this.email).subscribe(
       result => {

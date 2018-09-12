@@ -42,7 +42,7 @@
                             <td>{{item.NombreUsuario}}</td>
                             <td>{{item.EmailUsuario}}</td>
                             <td class="text-center">
-                                <button *ngIf="item.EmailVerificated == 0" type="button" class="btn btn-primary" (click)="HabilitarDeshabilitar(item.IdUsuario)" >Verificar</button>
+                                <button *ngIf="item.EmailVerificated == 0" type="button" class="btn btn-primary" (click)="HabilitarDeshabilitar(item.IdUsuario, item)" >Verificar</button>
                                 <label *ngIf="item.EmailVerificated == 1">Verificado</label>
                             </td>
                             <td class="text-center">{{item.NombrePermiso}}</td>

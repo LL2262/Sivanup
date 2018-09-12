@@ -48,6 +48,11 @@ export class SivanupService{
         return this._http.post(this.url+'usuario', params, {headers: headers}).map(res=>res.json());
     }
 
+    habilitarUsuario(id)
+    {
+        return this._http.get(this.url+'habilitar-usuario/'+id).map(res=>res.json());
+    }
+
     getCentros()
     {
         return this._http.get(this.url+'centros').map(res=>res.json());

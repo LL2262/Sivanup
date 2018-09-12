@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { SivanupService } from '../../servicios/sivanup.service';
 import { Usuarios } from '../../models/usuarios';
+import * as toastr from 'toastr';
 
 @Component({
   selector: 'admin-users',
@@ -14,12 +15,17 @@ export class AdminUsers{
   public emailUsuario: string;
   public usuarioAdmin: Usuarios;
   public data;
+  public buscador: string;
 
 
   constructor(private _authService: AuthService, private _sivanupService: SivanupService) 
   {
     this.titulo="Administrar Usuarios"
     this.usuarioAdmin=new Usuarios('0','','','',false,'','','',0,null, null, false);
+    toastr.options = {
+        "positionClass": "toast-top-right",
+        "timeOut": "4000",
+      }
   }
 
   ngOnInit() {
@@ -37,10 +43,10 @@ export class AdminUsers{
         }
       });
 
-      this.getCentros();
+      this.getUsuarios();
   }
 
-  getCentros()
+  getUsuarios()
     {
         this._sivanupService.getUsuarios().subscribe(
             result => {
@@ -51,4 +57,39 @@ export class AdminUsers{
             }
         );
     }
+
+    HabilitarDeshabilitar(id, usuario: Usuarios)
+    {   
+        this._sivanupService.habilitarUsuario(id).subscribe(
+            response => {
+                if (response.code == 200) {
+                    this.enviarCorreo(usuario)
+                    this.getUsuarios();
+                    toastr["success"]("El usuario se habilitó correctamente", "");
+                } else {
+                    console.log(response);
+                }
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
+    }
+
+    enviarCorreo(usuario: Usuarios) {
+        this._sivanupService.email(usuario).subscribe(
+          result => {
+            if (result.code == 200) {
+                console.log(result.message);
+            }
+          },
+          err => {
+            console.log("Error grave");
+          }
+        );
+    
+      }
+    
+      enviarSms() {
+      }
 }
