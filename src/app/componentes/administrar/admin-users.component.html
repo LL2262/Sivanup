@@ -18,12 +18,17 @@
                 <img src="../../../assets/bootstrap/img/load.gif" style="width: 100px">            
             </div>
 
-            <div class="table-responsive" *ngIf="data">
-                <div class="form-inline">
-                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Usuario" [(ngModel)]="buscador" style="width: 500px;"
-                    />
+            <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                            <input type="text" class="form-control text-uppercase" placeholder="Buscar por nombre" [(ngModel)]="buscadorNombre"/>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                            <input type="text" class="form-control text-uppercase" placeholder="Buscar por email" [(ngModel)]="buscadorEmail"/>
+                    </div>
+                    
                 </div>
-                <table class="table" [mfData]="data | FiltroUsuarios:buscador" #mf="mfDataTable" [mfRowsOnPage]="10">
+            <div class="table-responsive" *ngIf="data">
+                <table class="table" [mfData]="data | FiltroUsuarios:buscadorNombre | FiltroUsuariosEmail:buscadorEmail" #mf="mfDataTable" [mfRowsOnPage]="10">
                     <thead>
                         <tr>
                             <th>#</th>

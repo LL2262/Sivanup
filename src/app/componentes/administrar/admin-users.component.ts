@@ -63,9 +63,9 @@ export class AdminUsers{
         this._sivanupService.habilitarUsuario(id).subscribe(
             response => {
                 if (response.code == 200) {
-                    this.enviarCorreo(usuario)
                     this.getUsuarios();
                     toastr["success"]("El usuario se habilitó correctamente", "");
+                    this.enviarCorreo(usuario)
                 } else {
                     console.log(response);
                 }
