@@ -59,6 +59,8 @@ import { environment } from '../environments/environment';
 
 import{ AdminUsers } from './componentes/administrar/admin-users.component';
 
+import { PersonasEncuestas } from './componentes/personas-encuestas/personas-encuestas.component';
+
 // Servicios
 import { AuthService } from './servicios/auth.service';
 import { SivanupService } from './servicios/sivanup.service';
@@ -101,7 +103,8 @@ import { AuthGuard } from './guards/auth.guard';
     TerritorioEditar,
     AdminUsers,
     UsuariosFilterPipe,
-    UsuariosEmailFilterPipe
+    UsuariosEmailFilterPipe,
+    PersonasEncuestas
   ],
   imports: [
     BrowserModule,
