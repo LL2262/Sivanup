@@ -48,13 +48,20 @@
                             </li>
                         </ul>
                     </li>
-                    <li *ngIf="isLogin">
-                        <a href="#">
-                            <i class="fa fa-users"></i> Personas</a>
-                    </li>
-                    <li *ngIf="isLogin">
-                        <a href="#">
-                            <i class="fa fa-edit"></i> Encuestas</a>
+                    <li *ngIf="isLogin" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Afiliados
+                            <span class="expand_caret caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a [routerLink]="['/cargarAfiliado']">
+                                    <i class="fa fa-users"></i> Cargar afiliado</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/departamentos']">
+                                    <i class="fa fa-users"></i> Buscar afiliados</a>
+                            </li>
+                        </ul>
                     </li>
                     <li *ngIf="isLogin && usuario.IdPermiso == 1">
                         <a [routerLink]="['/adminUsers']">
