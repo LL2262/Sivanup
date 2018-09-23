@@ -1,32 +1,95 @@
 <div class="col-md-10 col-md-offset-1">
     <div class="jumbotron">
         <h3 class="text-center">{{titulo}}</h3>
-        <form #formDatosPersonales="ngForm" (submit)="onSubmitAddUser()">
+        <form #formDatosPersonales="ngForm">
   
             <div class="row">
-              <div class="form-group col-md-3">
-                <label>Fecha<span *ngIf="!fecha.valid && apellido.fecha" class="alert-danger">
-                  <i class="fa fa-exclamation-circle"></i> La fecha no puede ser posterior a la actual</span></label>
-                  <div class="input-group">
-                    <input id="fecha" type="text" #fecha="ngModel" name="fecha" [(ngModel)]="afiliado.FechaComienzo" class="form-control date-picker">
+
+              <div class="form-group col-md-4">
+                <label>Fecha</label>
+                  <div class="input-group col-md-3">
+                    <input type="date" max="{{afiliado.FechaComienzo}}" #fecha="ngModel" name="fecha" [(ngModel)]="afiliado.FechaComienzo" class="form-control" required>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>   
                   </div>                 
               </div>
 
+              <div class="form-group col-md-3 col-md-offset-5">
+                  <label>N° de Beneficiario<span *ngIf="!beneficiario.valid && beneficiario.touched" class="alert-danger">
+                    <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
+                  <input type="text" #beneficiario="ngModel" name="beneficiario"[(ngModel)]="afiliado.NroAfiliado" class="form-control text-uppercase" required>
+                </div>
 
             </div>  
-    
-            <input type="submit" [disabled]="!formDatosPersonales.form.valid" value="Enviar" class="btn btn-primary btn-block">
+
+            <div class="row">
+              
+              <div class="form-group col-md-7">
+                <label>Apellido y Nombre<span *ngIf="!apeNom.valid && apeNom.touched" class="alert-danger">
+                  <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
+                <input type="text" #apeNom="ngModel" name="apeNom" [(ngModel)]="afiliado.ApellidoNombre" class="form-control text-uppercase" required>
+              </div>
+
+              <div class="form-group col-md-2">
+                  <label>Edad<span *ngIf="!edad.valid && edad.touched" class="alert-danger">
+                    <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
+                  <input type="text" #edad="ngModel" name="edad" [(ngModel)]="afiliado.Edad" class="form-control text-uppercase" required>
+              </div>
+
+              <div class="form-group col-md-3">
+                  <label>Sexo<span *ngIf="!sexo.valid && sexo.touched" class="alert-danger">
+                    <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
+                  <div class="radio">
+                      <label><input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>Femenino &nbsp;&nbsp;</label>
+                      <label><input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>Masculino</label>
+                  </div>     
+              </div>
+
+            </div>
+
+            <div class="row">
+              
+              <div class="form-group col-md-2">
+                <label>Cintura<span *ngIf="!cintura.valid && cintura.touched" class="alert-danger">
+                  <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
+                <input type="text" #cintura="ngModel" name="cintura" [(ngModel)]="afiliado.Cintura" class="form-control text-uppercase" required>
+              </div>
+
+              <div class="form-group col-md-2">
+                  <label>Pantorrilla<span *ngIf="!pantorrilla.valid && pantorrilla.touched" class="alert-danger">
+                    <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
+                  <input type="text" #pantorrilla="ngModel" name="pantorrilla" [(ngModel)]="afiliado.Pantorrilla" class="form-control text-uppercase" required>
+              </div>
+
+              <div class="form-group col-md-4">
+                  <label>Encuestador<span *ngIf="!encuestador.valid && encuestador.touched" class="alert-danger">
+                      <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
+                  <select #encuestador="ngModel" name="encuestador" [(ngModel)]="afiliado.Encuestador" class="form-control" required>
+                      <option *ngFor="let item of encuestadores" [ngValue]="item">{{item.Encuestador}}</option>
+                  </select> 
+              </div>
+
+              <div class="form-group col-md-4">
+                  <label>Departamento<span *ngIf="!departamento.valid && departamento.touched" class="alert-danger">
+                      <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
+                  <select #departamento="ngModel" name="departamento" [(ngModel)]="afiliado.Dpto" class="form-control text-uppercase selected"  required>
+                      <option *ngFor="let item of dptos" [ngValue]="item">{{item.NombreDpto}}</option>
+                  </select> 
+              </div>
+              
+
+            </div>
+
+            <select class="selectpicker" data-show-subtext="true" data-live-search="true">
+              <option data-subtext="Rep California">Tom Foolery</option>
+              <option data-subtext="Sen California">Bill Gordon</option>
+              <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
+              <option data-subtext="Rep Alabama">Mario Flores</option>
+              <option data-subtext="Rep Alaska">Don Young</option>
+              <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
+            </select>
+
+            <input type="button" [disabled]="!formDatosPersonales.form.valid" value="Enviar" class="btn btn-primary btn-block" (click)="enviar()">
     
           </form>
-
-    </div>
-</div>
-<div class="col-md-10 col-md-offset-1">
-    <div class="jumbotron">
-        <h3 class="text-center">{{titulo2}}</h3>
-
-
-
     </div>
 </div>
