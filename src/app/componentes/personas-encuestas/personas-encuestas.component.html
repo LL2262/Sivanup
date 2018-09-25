@@ -71,22 +71,13 @@
               <div class="form-group col-md-4">
                   <label>Departamento<span *ngIf="!departamento.valid && departamento.touched" class="alert-danger">
                       <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-                  <select #departamento="ngModel" name="departamento" [(ngModel)]="afiliado.Dpto" class="form-control text-uppercase selected"  required>
-                      <option *ngFor="let item of dptos" [ngValue]="item">{{item.NombreDpto}}</option>
-                  </select> 
+                  <ng-select #departamento="ngModel" name="departamento" [(ngModel)]="afiliado.Dpto" [dropdownPosition]="'bottom'" class="text-uppercase" required>
+                      <ng-option *ngFor="let item of dptos" [value]="item">{{item.NombreDpto}}</ng-option>
+                      <ng-option></ng-option>
+                  </ng-select>
               </div>
-              
 
-            </div>
-
-            <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-              <option data-subtext="Rep California">Tom Foolery</option>
-              <option data-subtext="Sen California">Bill Gordon</option>
-              <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
-              <option data-subtext="Rep Alabama">Mario Flores</option>
-              <option data-subtext="Rep Alaska">Don Young</option>
-              <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
-            </select>
+            </div>            
 
             <input type="button" [disabled]="!formDatosPersonales.form.valid" value="Enviar" class="btn btn-primary btn-block" (click)="enviar()">
     

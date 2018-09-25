@@ -3,6 +3,7 @@ import { Encuestadores } from "./encuestadores";
 import { Centros } from "./centros";
 import { Dptos } from "./dptos";
 import { Territorios } from "./territorios";
+import { Enfermedades } from "./enfermedades";
 
 export class Personas{
 
@@ -18,7 +19,7 @@ export class Personas{
         public Centro: Centros,
         public Baja: boolean,
         public Comentario: string,
-        public Enfermedades: string,
+        public Enfermedades: Enfermedades[],
         public Cintura: string,
         public RiesgoCintura: string,
         public Pantorrilla: string,

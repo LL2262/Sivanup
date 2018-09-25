@@ -26,9 +26,10 @@ declare var $:any;
     public date: Date;
     public today: string;
     public encuestadores: Encuestadores;
-    public dptos: Dptos;
+    public dptos: Array<Dptos>;
     
     public validacionPositiva: boolean;
+
 
     constructor(private _route: ActivatedRoute, private _router: Router, private _sivanupService: SivanupService, public datepipe: DatePipe)
     {
@@ -46,7 +47,7 @@ declare var $:any;
         this.date=new Date();
         this.today = this.datepipe.transform(this.date, 'yyyy-MM-dd');
         
-        this.afiliado = new Personas('','','','','',null,this.today,null,null,false,'','','','','','',null,null);
+        this.afiliado = new Personas('','','','','',null,this.today,null,null,false,'',null,'','','','',null,null);
     }
 
     ngOnInit()
@@ -59,7 +60,7 @@ declare var $:any;
 
     enviar(){
       
-        console.log(this.afiliado.Encuestador);
+        console.log(this.afiliado.Dpto);
     }
 
     getEncuestadores()

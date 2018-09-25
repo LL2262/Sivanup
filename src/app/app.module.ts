@@ -5,8 +5,9 @@ import { HttpModule } from '@angular/http';
 
 import { ToastModule } from 'ng2-toastr'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DataTableModule } from 'angular2-datatable'
+import { DataTableModule } from 'angular2-datatable';
 import { DataTablesModule } from 'angular-datatables';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // Filtros
 import { DataFilterPipe }   from './componentes/centros/centro-filter.pipe';
@@ -116,7 +117,8 @@ import { AuthGuard } from './guards/auth.guard';
     ToastModule.forRoot(),
     BrowserAnimationsModule,
     DataTableModule,
-    DataTablesModule
+    DataTablesModule,
+    NgSelectModule
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard, SivanupService],
   bootstrap: [AppComponent]

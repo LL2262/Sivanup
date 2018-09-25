@@ -56,7 +56,7 @@ export class RegisterComponent{
             );
 
       this._authService.logout();
-      toastr["success"]("", "Usuario creado correctamente, su sesión sera activada por el administrador");
+      toastr["success"]("", "Usuario creado correctamente, su sesión sera activada por el administrador", { positionClass: 'toast-top-right', timeOut: '5000' });
       this._router.navigate(['/login']);      
     }).catch( (err) => {
       console.log(err.code)
