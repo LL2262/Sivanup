@@ -143,3 +143,7 @@ a[aria-expanded='true'] > .expand_caret {
 .navbar {
     border-radius: 0px;
 }
+
+.ng-select .ng-select-container .ng-value-container .ng-input>input{
+    text-transform: uppercase;
+}

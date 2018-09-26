@@ -6,6 +6,10 @@ import { Personas } from '../../models/personas';
 import { DatePipe } from '@angular/common';
 import { Encuestadores } from '../../models/encuestadores';
 import { Dptos } from '../../models/dptos';
+import { Centros } from '../../models/centros';
+import { Programas } from '../../models/programas';
+import { Territorios } from '../../models/territorios';
+import { Enfermedades } from '../../models/enfermedades';
 
 declare var jQuery:any;
 declare var $:any;
@@ -26,7 +30,11 @@ declare var $:any;
     public date: Date;
     public today: string;
     public encuestadores: Encuestadores;
-    public dptos: Array<Dptos>;
+    public dptos: Dptos;
+    public centros: Centros;
+    public programas: Programas;
+    public territorios: Territorios;
+    public enfermedades: Enfermedades;
     
     public validacionPositiva: boolean;
 
@@ -56,11 +64,15 @@ declare var $:any;
         console.log(this.datepipe.transform(this.date, 'dd-MM-yyyy'));
         this.getEncuestadores();
         this.getDptos();
+        this.getCentros();
+        this.getProgramas();
+        this.getTerritorios();
+        this.getEnfermedades();
     }
 
     enviar(){
       
-        console.log(this.afiliado.Dpto);
+        console.log(this.afiliado);
     }
 
     getEncuestadores()
@@ -80,6 +92,54 @@ declare var $:any;
         this._sivanupService.getDptos().subscribe(
             result => {
                 this.dptos = result.data;
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
+    }
+
+    getCentros()
+    {
+        this._sivanupService.getCentros().subscribe(
+            result => {
+                this.centros = result.data;
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
+    }
+
+    getProgramas()
+    {
+        this._sivanupService.getProgramas().subscribe(
+            result => {
+                this.programas = result.data;
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
+    }
+
+    getTerritorios()
+    {
+        this._sivanupService.getTerritorios().subscribe(
+            result => {
+                this.territorios = result.data;
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
+    }
+
+    getEnfermedades()
+    {
+        this._sivanupService.getEnfermedades().subscribe(
+            result => {
+                this.enfermedades = result.data;
             },
             error => {
                 console.log(<any>error);
