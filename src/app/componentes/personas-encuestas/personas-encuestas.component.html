@@ -112,6 +112,84 @@
                       <ng-option></ng-option>
                   </ng-select>
               </div>
+
+              <div class="form-group col-md-5">
+                <label>Comentarios</label>
+                <textarea rows="2" #coment="ngModel" name="coment" [(ngModel)]="afiliado.Comentario" class="form-control text-uppercase" required></textarea>
+              </div>
+            </div>
+
+            <h3 class="text-center">{{titulo2}}</h3>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-10">
+                                Pregunta 1
+                            </div>
+                            <div class="col-md-2">
+                                <div class="radio margin-radio">
+                                    <label>
+                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                    <label>
+                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-10">
+                                Pregunta 2
+                            </div>
+                            <div class="col-md-2">
+                                <div class="radio margin-radio">
+                                    <label>
+                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                    <label>
+                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-10">
+                                Pregunta 3
+                            </div>
+                            <div class="col-md-2">
+                                <div class="radio margin-radio">
+                                    <label>
+                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                    <label>
+                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-10">
+                                Pregunta 4
+                            </div>
+                            <div class="col-md-2">
+                                <div class="radio margin-radio">
+                                    <label>
+                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                    <label>
+                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
             </div>
 
             <input type="button" [disabled]="!formDatosPersonales.form.valid" value="Enviar" class="btn btn-primary btn-block" (click)="enviar()">
