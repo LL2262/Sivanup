@@ -10,6 +10,7 @@ import { Centros } from '../../models/centros';
 import { Programas } from '../../models/programas';
 import { Territorios } from '../../models/territorios';
 import { Enfermedades } from '../../models/enfermedades';
+import { Encuestas } from '../../models/encuestas';
 
 declare var jQuery:any;
 declare var $:any;
@@ -26,6 +27,7 @@ declare var $:any;
     public titulo2: string;
     public editar: boolean;
     public afiliado: Personas;
+    public encuesta: Encuestas;
 
     public date: Date;
     public today: string;
@@ -56,6 +58,7 @@ declare var $:any;
         this.today = this.datepipe.transform(this.date, 'yyyy-MM-dd');
         
         this.afiliado = new Personas('','','','','',null,this.today,null,null,false,'',null,'','','','',null,null);
+        this.encuesta = new Encuestas('',0,0,0,0,0,0,0,0,0,0,this.afiliado,false,'',0,'');
     }
 
     ngOnInit()
