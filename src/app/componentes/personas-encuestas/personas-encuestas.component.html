@@ -15,7 +15,7 @@
               <div class="form-group col-md-3 col-md-offset-5">
                   <label>N° de Beneficiario<span *ngIf="!beneficiario.valid && beneficiario.touched" class="alert-danger">
                     <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-                  <input type="text" #beneficiario="ngModel" name="beneficiario"[(ngModel)]="afiliado.NroAfiliado" class="form-control text-uppercase" required>
+                  <input type="text" #beneficiario="ngModel" name="beneficiario"[(ngModel)]="afiliado.NroAfiliado" class="form-control input-number" required>
                 </div>
             </div>  
 
@@ -29,7 +29,7 @@
               <div class="form-group col-md-2">
                   <label>Edad<span *ngIf="!edad.valid && edad.touched" class="alert-danger">
                     <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-                  <input type="text" #edad="ngModel" name="edad" [(ngModel)]="afiliado.Edad" class="form-control text-uppercase" required>
+                  <input type="text" maxlength="3" #edad="ngModel" name="edad" [(ngModel)]="afiliado.Edad" class="form-control input-number" required>
               </div>
 
               <div class="form-group col-md-3">
@@ -46,13 +46,13 @@
               <div class="form-group col-md-2">
                 <label>Cintura<span *ngIf="!cintura.valid && cintura.touched" class="alert-danger">
                   <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-                <input type="text" #cintura="ngModel" name="cintura" [(ngModel)]="afiliado.Cintura" class="form-control text-uppercase" required>
+                <input type="text" maxlength="3" #cintura="ngModel" name="cintura" [(ngModel)]="afiliado.Cintura" class="form-control input-number" required>
               </div>
 
               <div class="form-group col-md-2">
                   <label>Pantorrilla<span *ngIf="!pantorrilla.valid && pantorrilla.touched" class="alert-danger">
                     <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-                  <input type="text" #pantorrilla="ngModel" name="pantorrilla" [(ngModel)]="afiliado.Pantorrilla" class="form-control text-uppercase" required>
+                  <input type="text" maxlength="3" #pantorrilla="ngModel" name="pantorrilla" [(ngModel)]="afiliado.Pantorrilla" class="form-control input-number" required>
               </div>
 
               <div class="form-group col-md-4">
@@ -115,7 +115,7 @@
 
               <div class="form-group col-md-5">
                 <label>Comentarios</label>
-                <textarea rows="2" #coment="ngModel" name="coment" [(ngModel)]="afiliado.Comentario" class="form-control text-uppercase" required></textarea>
+                <textarea rows="2" name="coment" [(ngModel)]="afiliado.Comentario" class="form-control text-uppercase"></textarea>
               </div>
             </div>
 
@@ -132,9 +132,9 @@
                             <div class="col-md-2">
                                 <div class="radio margin-radio">
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                        <input type="radio" name="Preg1" [(ngModel)]="encuesta.Preg1" value="2">SI&nbsp;</label>
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                        <input type="radio" name="Preg1" [(ngModel)]="encuesta.Preg1" value="0">NO</label>
                                 </div>
                             </div>
                         </div>
@@ -148,9 +148,9 @@
                             <div class="col-md-2">
                                 <div class="radio margin-radio">
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                        <input type="radio" name="Preg2" [(ngModel)]="encuesta.Preg2" value="3">SI&nbsp;</label>
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                        <input type="radio" name="Preg2" [(ngModel)]="encuesta.Preg2" value="0">NO</label>
                                 </div>
                             </div>
                         </div>
@@ -165,9 +165,9 @@
                             <div class="col-md-2">
                                 <div class="radio margin-radio">
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                        <input type="radio" name="Preg3" [(ngModel)]="encuesta.Preg3" value="2">SI&nbsp;</label>
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                        <input type="radio" name="Preg3" [(ngModel)]="encuesta.Preg3" value="0">NO</label>
                                 </div>
                             </div>
                         </div>
@@ -181,9 +181,9 @@
                             <div class="col-md-2">
                                 <div class="radio margin-radio">
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                        <input type="radio" name="Preg4" [(ngModel)]="encuesta.Preg4" value="2">SI&nbsp;</label>
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                        <input type="radio" name="Preg4" [(ngModel)]="encuesta.Preg4" value="0">NO</label>
                                 </div>
                             </div>
                         </div>
@@ -197,9 +197,9 @@
                             <div class="col-md-2">
                                 <div class="radio margin-radio">
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                        <input type="radio" name="Preg5" [(ngModel)]="encuesta.Preg5" value="2">SI&nbsp;</label>
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                        <input type="radio" name="Preg5" [(ngModel)]="encuesta.Preg5" value="0">NO</label>
                                 </div>
                             </div>
                         </div>
@@ -215,9 +215,9 @@
                             <div class="col-md-2">
                                 <div class="radio margin-radio">
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                        <input type="radio" name="Preg6" [(ngModel)]="encuesta.Preg6" value="4">SI&nbsp;</label>
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                        <input type="radio" name="Preg6" [(ngModel)]="encuesta.Preg6" value="0">NO</label>
                                 </div>
                             </div>
                         </div>
@@ -231,9 +231,9 @@
                             <div class="col-md-2">
                                 <div class="radio margin-radio">
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                        <input type="radio" name="Preg7" [(ngModel)]="encuesta.Preg7" value="1">SI&nbsp;</label>
                                     <label>
-                                        <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                        <input type="radio" name="Preg7" [(ngModel)]="encuesta.Preg7" value="0">NO</label>
                                 </div>
                             </div>
                         </div>
@@ -247,9 +247,9 @@
                                 <div class="col-md-2">
                                     <div class="radio margin-radio">
                                         <label>
-                                            <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                            <input type="radio" name="Preg8" [(ngModel)]="encuesta.Preg8" value="1">SI&nbsp;</label>
                                         <label>
-                                            <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                            <input type="radio" name="Preg8" [(ngModel)]="encuesta.Preg8" value="0">NO</label>
                                     </div>
                                 </div>
                             </div>
@@ -263,9 +263,9 @@
                                     <div class="col-md-2">
                                         <div class="radio margin-radio">
                                             <label>
-                                                <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                                <input type="radio" name="Preg9" [(ngModel)]="encuesta.Preg9" value="2">SI&nbsp;</label>
                                             <label>
-                                                <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                                <input type="radio" name="Preg9" [(ngModel)]="encuesta.Preg9" value="0">NO</label>
                                         </div>
                                     </div>
                                 </div>
@@ -280,9 +280,9 @@
                                         <div class="col-md-2">
                                             <div class="radio margin-radio">
                                                 <label>
-                                                    <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="F" required>SI&nbsp;</label>
+                                                    <input type="radio" name="Preg10" [(ngModel)]="encuesta.Preg10" value="2">SI&nbsp;</label>
                                                 <label>
-                                                    <input type="radio" #sexo="ngModel" name="sexo" [(ngModel)]="afiliado.Sexo" value="M" required>NO</label>
+                                                    <input type="radio" name="Preg10" [(ngModel)]="encuesta.Preg10" value="0">NO</label>
                                             </div>
                                         </div>
                                     </div>

@@ -12,7 +12,6 @@ import { Territorios } from '../../models/territorios';
 import { Enfermedades } from '../../models/enfermedades';
 import { Encuestas } from '../../models/encuestas';
 
-declare var jQuery:any;
 declare var $:any;
 
 @Component({
@@ -58,11 +57,16 @@ declare var $:any;
         this.today = this.datepipe.transform(this.date, 'yyyy-MM-dd');
         
         this.afiliado = new Personas('','','','','',null,this.today,null,null,false,'',null,'','','','',null,null);
-        this.encuesta = new Encuestas('',0,0,0,0,0,0,0,0,0,0,this.afiliado,false,'',0,'');
+        this.encuesta = new Encuestas('','0','0','0','0','0','0','0','0','0','0',this.afiliado,false,'','','');
+
     }
 
     ngOnInit()
     {
+        $('.input-number').on('input', function () { 
+            this.value = this.value.replace(/[^0-9]/g,'');
+            });
+
         this.editar = false;
         console.log(this.datepipe.transform(this.date, 'dd-MM-yyyy'));
         this.getEncuestadores();
@@ -74,8 +78,8 @@ declare var $:any;
     }
 
     enviar(){
-      
-        console.log(this.afiliado);
+        this.encuesta.Total+=parseInt(this.encuesta.Preg1)+parseInt(this.encuesta.Preg2)+parseInt(this.encuesta.Preg3)+parseInt(this.encuesta.Preg4)+parseInt(this.encuesta.Preg5)+parseInt(this.encuesta.Preg6)+parseInt(this.encuesta.Preg7)+parseInt(this.encuesta.Preg8)+parseInt(this.encuesta.Preg9)+parseInt(this.encuesta.Preg10);
+        console.log(this.encuesta);
     }
 
     getEncuestadores()

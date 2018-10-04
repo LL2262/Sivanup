@@ -4,20 +4,20 @@ export class Encuestas{
 
     constructor(
         public IdEncuesta: string,
-        public Preg1: number,
-        public Preg2: number,
-        public Preg3: number,
-        public Preg4: number,
-        public Preg5: number,
-        public Preg6: number,
-        public Preg7: number,
-        public Preg8: number,
-        public Preg9: number,
-        public Preg10: number,
+        public Preg1: string,
+        public Preg2: string,
+        public Preg3: string,
+        public Preg4: string,
+        public Preg5: string,
+        public Preg6: string,
+        public Preg7: string,
+        public Preg8: string,
+        public Preg9: string,
+        public Preg10: string,
         public IdPersona: Personas,
         public Baja: boolean,
         public Comentario: string,
-        public Total: number,
+        public Total: string,
         public Est_Nutr: string
     ){}
 }
