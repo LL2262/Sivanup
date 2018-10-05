@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableModule } from 'angular2-datatable';
 import { DataTablesModule } from 'angular-datatables';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MyDatePickerModule } from 'mydatepicker';
 
 // Filtros
 import { DataFilterPipe }   from './componentes/centros/centro-filter.pipe';
@@ -118,7 +119,8 @@ import { AuthGuard } from './guards/auth.guard';
     BrowserAnimationsModule,
     DataTableModule,
     DataTablesModule,
-    NgSelectModule
+    NgSelectModule,
+    MyDatePickerModule
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard, SivanupService],
   bootstrap: [AppComponent]
