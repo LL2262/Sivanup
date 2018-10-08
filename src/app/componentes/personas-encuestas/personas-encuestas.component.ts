@@ -44,7 +44,7 @@ declare var $:any;
         editableDateField: false,
         dateFormat: 'dd/mm/yyyy',
         dayLabels: {su: 'Dom', mo: 'Lun', tu: 'Mar', we: 'Mie', th: 'Jue', fr: 'Vie', sa: 'Sab'},
-        disableDateRanges: [{begin: {year: this.today.getFullYear(), month: this.today.getMonth()+1, day: this.today.getDay()+1}, end: {year: 9999, month: 12, day: 20}}]
+        disableDateRanges: [{begin: {year: this.today.getFullYear(), month: this.today.getMonth()+1, day: this.today.getDate()+1}, end: {year: 9999, month: 12, day: 20}}]
     };
 
     public fechaComienzo: string; 
@@ -65,7 +65,7 @@ declare var $:any;
 
         // this.today = this.datepipe.transform(this.date, 'yyyy-MM-dd');
         
-        this.afiliado = new Personas('','','','','',null,'',null,null,false,null,null,'','','','',null,null);
+        this.afiliado = new Personas('','','',null,'',null,'',null,null,false,'',null,'','','','',null,null);
         this.encuesta = new Encuestas('','0','0','0','0','0','0','0','0','0','0',this.afiliado,false,'','','');
 
     }
@@ -83,7 +83,6 @@ declare var $:any;
         this.getProgramas();
         this.getTerritorios();
         this.getEnfermedades();
-        console.log(this.today);
     }
 
     onDateChanged(event: IMyDateModel) {
@@ -92,9 +91,119 @@ declare var $:any;
     }
 
     enviar(){
+        this.encuesta.Total='';
+
         this.afiliado.FechaComienzo=this.fechaComienzo;
+
         this.encuesta.Total+=parseInt(this.encuesta.Preg1)+parseInt(this.encuesta.Preg2)+parseInt(this.encuesta.Preg3)+parseInt(this.encuesta.Preg4)+parseInt(this.encuesta.Preg5)+parseInt(this.encuesta.Preg6)+parseInt(this.encuesta.Preg7)+parseInt(this.encuesta.Preg8)+parseInt(this.encuesta.Preg9)+parseInt(this.encuesta.Preg10);
+
+
+        if(parseInt(this.encuesta.Total) <= 2){this.encuesta.Est_Nutr = 'SIN RIESGO'}
+        if(parseInt(this.encuesta.Total) >= 3 && parseInt(this.encuesta.Total) <= 5 ){this.encuesta.Est_Nutr = 'RIESGO MODERADO'}
+        if(parseInt(this.encuesta.Total) >= 6){this.encuesta.Est_Nutr = 'ALTO RIESGO'}
+
+
+        if(this.encuesta.IdPersona.Sexo === 'F')
+        {
+            //PANTORRILLA FEMENINA
+            if(parseInt(this.encuesta.IdPersona.Pantorrilla) < 31)
+            {
+                this.encuesta.IdPersona.RiesgoPantorrilla = "CON RIESGO";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Pantorrilla) >= 31 && parseInt(this.encuesta.IdPersona.Pantorrilla) <= 33)
+            {
+                this.encuesta.IdPersona.RiesgoPantorrilla = "NORMAL";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Pantorrilla) > 33)
+            {
+                this.encuesta.IdPersona.RiesgoPantorrilla = "AUMENTADA";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Pantorrilla) == 0)
+            {
+                this.encuesta.IdPersona.RiesgoPantorrilla = "NO REGISTRA MEDICIÓN";
+            }
+
+            //CINTURA FEMENINA
+            if(parseInt(this.encuesta.IdPersona.Cintura) < 81)
+            {
+                this.encuesta.IdPersona.RiesgoCintura = "SIN RIESGO";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Cintura) >= 81 && parseInt(this.encuesta.IdPersona.Cintura) <= 87)
+            {
+                this.encuesta.IdPersona.RiesgoCintura = "RIESGO MEDIO";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Cintura) > 87)
+            {
+                this.encuesta.IdPersona.RiesgoCintura = "ALTO RIESGO";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Cintura) == 0)
+            {
+                this.encuesta.IdPersona.RiesgoCintura = "NO REGISTRA MEDICIÓN";
+            }
+
+        }
+        else
+        {
+            //PANTORRILLA MASCULINA
+            if(parseInt(this.encuesta.IdPersona.Pantorrilla) < 31)
+            {
+                this.encuesta.IdPersona.RiesgoPantorrilla = "CON RIESGO";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Pantorrilla) >= 31 && parseInt(this.encuesta.IdPersona.Pantorrilla) <= 33)
+            {
+                this.encuesta.IdPersona.RiesgoPantorrilla = "NORMAL";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Pantorrilla) > 33)
+            {
+                this.encuesta.IdPersona.RiesgoPantorrilla = "AUMENTADA";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Pantorrilla) == 0)
+            {
+                this.encuesta.IdPersona.RiesgoPantorrilla = "NO REGISTRA MEDICIÓN";
+            }
+
+            //CINTURA MASCULINA
+            if(parseInt(this.encuesta.IdPersona.Cintura) < 95)
+            {
+                this.encuesta.IdPersona.RiesgoCintura = "SIN RIESGO";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Cintura) >= 95 && parseInt(this.encuesta.IdPersona.Cintura) <= 101)
+            {
+                this.encuesta.IdPersona.RiesgoCintura = "RIESGO MEDIO";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Cintura) > 101)
+            {
+                this.encuesta.IdPersona.RiesgoCintura = "ALTO RIESGO";
+            }
+
+            if(parseInt(this.encuesta.IdPersona.Cintura) == 0)
+            {
+                this.encuesta.IdPersona.RiesgoCintura = "NO REGISTRA MEDICIÓN";
+            }
+
+        }
+
         console.log(this.encuesta);
+
+        this._sivanupService.addAfiliadoEncuesta(this.encuesta).subscribe(
+            result => {
+                console.log(result.data);
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
     }
 
     getEncuestadores()

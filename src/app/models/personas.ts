@@ -1,8 +1,3 @@
-import { Programas } from "./programas";
-import { Encuestadores } from "./encuestadores";
-import { Centros } from "./centros";
-import { Dptos } from "./dptos";
-import { Territorios } from "./territorios";
 import { Enfermedades } from "./enfermedades";
 
 export class Personas{
@@ -13,18 +8,18 @@ export class Personas{
         public ApellidoNombre: string,
         public Sexo: string,
         public Edad: string,
-        public Programa: Programas,
+        public Programa: string,
         public FechaComienzo: string,
-        public Encuestador: Encuestadores,
-        public Centro: Centros,
+        public Encuestador: string,
+        public Centro: string,
         public Baja: boolean,
         public Comentario: string,
-        public Enfermedades: Enfermedades[],
+        public Enfermedades: string[],
         public Cintura: string,
         public RiesgoCintura: string,
         public Pantorrilla: string,
         public RiesgoPantorrilla: string,
-        public Dpto: Dptos,
-        public Territorio: Territorios
+        public Dpto: string,
+        public Territorio: string
     ){}
 }

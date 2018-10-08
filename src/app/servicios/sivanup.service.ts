@@ -9,6 +9,7 @@ import { Encuestadores } from '../models/encuestadores';
 import { Enfermedades } from '../models/enfermedades';
 import { Programas } from '../models/programas';
 import { Territorios } from '../models/territorios';
+import { Encuestas } from '../models/encuestas';
 
 @Injectable()
 export class SivanupService{
@@ -249,6 +250,15 @@ export class SivanupService{
     deleteTerritorio(id)
     {
         return this._http.get(this.url+'delete-territorio/'+id).map(res=>res.json());
+    }
+
+    addAfiliadoEncuesta(encuesta: Encuestas)
+    {
+        let json = JSON.stringify(encuesta);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'afiliadoEncuesta', params, {headers: headers}).map(res=>res.json());
     }
 
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)
