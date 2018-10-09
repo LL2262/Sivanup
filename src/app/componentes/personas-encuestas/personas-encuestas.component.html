@@ -60,7 +60,7 @@
               <div class="form-group col-md-4">
                   <label>Encuestador<span *ngIf="!encuestador.valid && encuestador.touched" class="alert-danger">
                       <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-                  <ng-select #encuestador="ngModel" name="encuestador" [(ngModel)]="afiliado.Encuestador" [dropdownPosition]="'bottom'" class="text-uppercase" required>
+                  <ng-select #encuestador="ngModel" name="encuestador" [(ngModel)]="afiliado.Encuestador" [dropdownPosition]="'bottom'" [notFoundText]="'NO EXISTE ENCUESTADOR'" class="text-uppercase" required>
                     <ng-option *ngFor="let item of encuestadores" [value]="item.IdEncuestador">{{item.Encuestador}}</ng-option>
                     <ng-option></ng-option>
                 </ng-select>
@@ -69,7 +69,7 @@
               <div class="form-group col-md-4">
                 <label>Territorio<span *ngIf="!territorio.valid && territorio.touched" class="alert-danger">
                   <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-              <ng-select #territorio="ngModel" name="territorio" [(ngModel)]="afiliado.Territorio" [dropdownPosition]="'bottom'" class="text-uppercase" required>
+              <ng-select #territorio="ngModel" name="territorio" [(ngModel)]="afiliado.Territorio" [dropdownPosition]="'bottom'" [notFoundText]="'NO EXISTE TERRITORIO'" class="text-uppercase" required>
                   <ng-option *ngFor="let item of territorios" [value]="item.IdTerritorio">{{item.NombreTerritorio}}</ng-option>
                   <ng-option></ng-option>
               </ng-select>
@@ -80,7 +80,7 @@
                 <div class="form-group col-md-3">
                     <label>Departamento<span *ngIf="!departamento.valid && departamento.touched" class="alert-danger">
                         <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-                    <ng-select #departamento="ngModel" name="departamento" [(ngModel)]="afiliado.Dpto" [dropdownPosition]="'bottom'" class="text-uppercase" required>
+                    <ng-select #departamento="ngModel" name="departamento" [(ngModel)]="afiliado.Dpto" [dropdownPosition]="'bottom'" [notFoundText]="'NO EXISTE DEPARTAMENTO'" class="text-uppercase" required>
                         <ng-option *ngFor="let item of dptos" [value]="item.IdDpto">{{item.NombreDpto}}</ng-option>
                         <ng-option></ng-option>
                     </ng-select>
@@ -89,7 +89,7 @@
               <div class="form-group col-md-5">
                 <label>Centro<span *ngIf="!centro.valid && centro.touched" class="alert-danger">
                   <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-              <ng-select #centro="ngModel" name="centro" [(ngModel)]="afiliado.Centro" [dropdownPosition]="'bottom'" class="text-uppercase" required>
+              <ng-select #centro="ngModel" name="centro" [(ngModel)]="afiliado.Centro" [dropdownPosition]="'bottom'" [notFoundText]="'NO EXISTE CENTRO'" class="text-uppercase" required>
                   <ng-option *ngFor="let item of centros" [value]="item.IdCentro">{{item.NombreCentro}}</ng-option>
                   <ng-option></ng-option>
               </ng-select>
@@ -98,7 +98,7 @@
               <div class="form-group col-md-4">
                 <label>Programa<span *ngIf="!programa.valid && programa.touched" class="alert-danger">
                   <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-              <ng-select #programa="ngModel" name="programa" [(ngModel)]="afiliado.Programa" [dropdownPosition]="'bottom'" class="text-uppercase" required>
+              <ng-select #programa="ngModel" name="programa" [(ngModel)]="afiliado.Programa" [dropdownPosition]="'bottom'" [notFoundText]="'NO EXISTE PROGRAMA'" class="text-uppercase" required>
                   <ng-option *ngFor="let item of programas" [value]="item.IdPrograma">{{item.NombrePrograma}}</ng-option>
                   <ng-option></ng-option>
               </ng-select>
@@ -109,7 +109,7 @@
               <div class="form-group col-md-4">
                   <label>Enfermedades<span *ngIf="!enfes.valid && enfes.touched" class="alert-danger">
                       <i class="fa fa-exclamation-circle"></i> Obligatorio</span></label>
-                  <ng-select #enfes="ngModel" name="enfes" [(ngModel)]="afiliado.Enfermedades" [dropdownPosition]="'bottom'" [multiple]="true" [closeOnSelect]="false" class="text-uppercase" required>
+                  <ng-select #enfes="ngModel" name="enfes" [(ngModel)]="afiliado.Enfermedades" [dropdownPosition]="'bottom'" [notFoundText]="'NO EXISTE ENFERMEDAD'" [multiple]="true" [closeOnSelect]="false" class="text-uppercase" required>
                       <ng-option *ngFor="let item of enfermedades" [value]="item.IdEnfermedad">{{item.NombreEnfermedad}}</ng-option>
                       <ng-option></ng-option>
                   </ng-select>

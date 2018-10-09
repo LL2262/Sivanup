@@ -62,8 +62,6 @@ declare var $:any;
             "positionClass": "toast-top-right",
             "timeOut": "4000",
         }
-
-        // this.today = this.datepipe.transform(this.date, 'yyyy-MM-dd');
         
         this.afiliado = new Personas('','','',null,'',null,'',null,null,false,'',null,'','','','',null,null);
         this.encuesta = new Encuestas('','0','0','0','0','0','0','0','0','0','0',this.afiliado,false,'','','');
@@ -87,7 +85,7 @@ declare var $:any;
 
     onDateChanged(event: IMyDateModel) {
         // event properties are: event.date, event.jsdate, event.formatted and event.epoc
-        this.fechaComienzo=event.formatted;
+        this.fechaComienzo = this.datepipe.transform(event.formatted, 'yyyy-MM-dd')
     }
 
     enviar(){
@@ -95,14 +93,33 @@ declare var $:any;
 
         this.afiliado.FechaComienzo=this.fechaComienzo;
 
-        this.encuesta.Total+=parseInt(this.encuesta.Preg1)+parseInt(this.encuesta.Preg2)+parseInt(this.encuesta.Preg3)+parseInt(this.encuesta.Preg4)+parseInt(this.encuesta.Preg5)+parseInt(this.encuesta.Preg6)+parseInt(this.encuesta.Preg7)+parseInt(this.encuesta.Preg8)+parseInt(this.encuesta.Preg9)+parseInt(this.encuesta.Preg10);
+        this.estadoNutriconal();
 
+        this.riesgoPantorrillaCintura();
+
+        console.log(this.encuesta);
+
+        this._sivanupService.addAfiliadoEncuesta(this.encuesta).subscribe(
+            result => {
+                console.log(result);
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
+    }
+
+    estadoNutriconal()
+    {
+        this.encuesta.Total+=parseInt(this.encuesta.Preg1)+parseInt(this.encuesta.Preg2)+parseInt(this.encuesta.Preg3)+parseInt(this.encuesta.Preg4)+parseInt(this.encuesta.Preg5)+parseInt(this.encuesta.Preg6)+parseInt(this.encuesta.Preg7)+parseInt(this.encuesta.Preg8)+parseInt(this.encuesta.Preg9)+parseInt(this.encuesta.Preg10);
 
         if(parseInt(this.encuesta.Total) <= 2){this.encuesta.Est_Nutr = 'SIN RIESGO'}
         if(parseInt(this.encuesta.Total) >= 3 && parseInt(this.encuesta.Total) <= 5 ){this.encuesta.Est_Nutr = 'RIESGO MODERADO'}
         if(parseInt(this.encuesta.Total) >= 6){this.encuesta.Est_Nutr = 'ALTO RIESGO'}
+    }
 
-
+    riesgoPantorrillaCintura()
+    {
         if(this.encuesta.IdPersona.Sexo === 'F')
         {
             //PANTORRILLA FEMENINA
@@ -193,17 +210,6 @@ declare var $:any;
             }
 
         }
-
-        console.log(this.encuesta);
-
-        this._sivanupService.addAfiliadoEncuesta(this.encuesta).subscribe(
-            result => {
-                console.log(result.data);
-            },
-            error => {
-                console.log(<any>error);
-            }
-        );
     }
 
     getEncuestadores()
