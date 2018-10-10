@@ -16,7 +16,6 @@ export class Encuestas{
         public Preg10: string,
         public IdPersona: Personas,
         public Baja: boolean,
-        public Comentario: string,
         public Total: string,
         public Est_Nutr: string
     ){}

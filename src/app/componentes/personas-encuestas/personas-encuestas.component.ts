@@ -11,7 +11,7 @@ import { Programas } from '../../models/programas';
 import { Territorios } from '../../models/territorios';
 import { Enfermedades } from '../../models/enfermedades';
 import { Encuestas } from '../../models/encuestas';
-import {IMyDpOptions, IMyDateModel, IMyDayLabels} from 'mydatepicker';
+import {IMyDpOptions, IMyDateModel} from 'mydatepicker';
 
 declare var $:any;
 
@@ -64,7 +64,7 @@ declare var $:any;
         }
         
         this.afiliado = new Personas('','','',null,'',null,'',null,null,false,'',null,'','','','',null,null);
-        this.encuesta = new Encuestas('','0','0','0','0','0','0','0','0','0','0',this.afiliado,false,'','','');
+        this.encuesta = new Encuestas('','0','0','0','0','0','0','0','0','0','0',this.afiliado,false,'','');
 
     }
 
@@ -101,7 +101,10 @@ declare var $:any;
 
         this._sivanupService.addAfiliadoEncuesta(this.encuesta).subscribe(
             result => {
-                console.log(result);
+                if(result.code=200){
+                    toastr["success"]("", "Afiliado cargado correctamente", { positionClass: 'toast-top-right', timeOut: '4000' });
+                    this._router.navigate(['/afiliados']); 
+                }
             },
             error => {
                 console.log(<any>error);

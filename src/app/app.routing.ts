@@ -35,6 +35,7 @@ import { TerritorioEditar } from './componentes/territorios/territorio-editar.co
 import { AdminUsers } from './componentes/administrar/admin-users.component';
 
 import { PersonasEncuestas } from './componentes/personas-encuestas/personas-encuestas.component';
+import { ConsultarAfiliados } from './componentes/personas-encuestas/consultar-afiliados.component';
 
 import { AuthGuard } from './guards/auth.guard'
 
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
      {path: 'editarTerritorio/:id', component: TerritorioEditar, canActivate: [AuthGuard]},
      {path: 'adminUsers', component: AdminUsers, canActivate: [AuthGuard]},
      {path: 'cargarAfiliado', component: PersonasEncuestas, canActivate: [AuthGuard]},
+     {path: 'afiliados', component: ConsultarAfiliados, canActivate: [AuthGuard]},
      {path: '**', component: ErrorComponent}
 ];
 

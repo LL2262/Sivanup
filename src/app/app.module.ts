@@ -62,6 +62,7 @@ import { environment } from '../environments/environment';
 import{ AdminUsers } from './componentes/administrar/admin-users.component';
 
 import { PersonasEncuestas } from './componentes/personas-encuestas/personas-encuestas.component';
+import { ConsultarAfiliados } from './componentes/personas-encuestas/consultar-afiliados.component';
 
 // Servicios
 import { AuthService } from './servicios/auth.service';
@@ -106,7 +107,8 @@ import { AuthGuard } from './guards/auth.guard';
     AdminUsers,
     UsuariosFilterPipe,
     UsuariosEmailFilterPipe,
-    PersonasEncuestas
+    PersonasEncuestas,
+    ConsultarAfiliados
   ],
   imports: [
     BrowserModule,
