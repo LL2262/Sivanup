@@ -102,7 +102,7 @@ declare var $:any;
         this._sivanupService.addAfiliadoEncuesta(this.encuesta).subscribe(
             result => {
                 if(result.code=200){
-                    toastr["success"]("", "Afiliado cargado correctamente", { positionClass: 'toast-top-right', timeOut: '4000' });
+                    toastr["success"]("", "Afiliado cargado correctamente", { positionClass: 'toast-top-right', timeOut: '5000' });
                     this._router.navigate(['/afiliados']); 
                 }
             },

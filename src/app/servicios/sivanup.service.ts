@@ -258,7 +258,17 @@ export class SivanupService{
         let params = 'json=' + json;
         let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-        return this._http.post(this.url+'afiliadoEncuesta', params, {headers: headers}).map(res=>res.json());
+        return this._http.post(this.url+'cargarAfiliadoEncuesta', params, {headers: headers}).map(res=>res.json());
+    }
+
+    traerAfiliadosYEncuesta()
+    {
+        return this._http.get(this.url+'afiliados').map(res=>res.json());
+    }
+
+    traerEnfermedadesXafiliados()
+    {
+        return this._http.get(this.url+'enfermedadesXafiliados').map(res=>res.json());
     }
 
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)

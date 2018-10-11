@@ -21,9 +21,9 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let item of mf.data">
+                    <tbody *ngFor="let item of mf.data;let indice=index">
                         <tr>
-                            <th scope="row">{{item.IdCentro}}</th>
+                            <th scope="row">{{indice+1}}</th>
                             <td>{{item.NombreCentro}}</td>
                             <td class="text-right col-sm-3 col-md-3">
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" attr.data-target="#detalle{{item.IdCentro}}"><i class="fa fa-search-plus"></i></button>
