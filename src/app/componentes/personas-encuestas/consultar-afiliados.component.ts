@@ -33,6 +33,7 @@ export class ConsultarAfiliados{
       this._sivanupService.traerAfiliadosYEncuesta().subscribe(
           result => {
               this.data = result.data;
+              console.log(this.data);
           },
           error => {
           }
@@ -44,7 +45,6 @@ export class ConsultarAfiliados{
     this._sivanupService.traerEnfermedadesXafiliados().subscribe(
       result => {
           this.enfermedadesXafiliados = result.data;
-          console.log(this.enfermedadesXafiliados);
       },
       error => {
           console.log(<any>error);

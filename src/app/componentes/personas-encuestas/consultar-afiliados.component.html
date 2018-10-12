@@ -8,18 +8,23 @@
             </div>
 
             <div class="table-responsive" *ngIf="data">
-                <div class="form-inline">
-                    <button type="button" class="btn btn-primary" [routerLink]="['/nuevoCentro']">Cargar Afiliado</button>
-                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Centro de Jubilado" [(ngModel)]="buscador" style="width: 400px;"
-                    />
-                </div>
+                    <div class="form-inline">
+                        <button type="button" class="btn btn-primary" [routerLink]="['/nuevoCentro']">Cargar Afiliado</button>
+                        <input type="text" class="form-control text-uppercase" placeholder="Buscar Centro de Jubilado" [(ngModel)]="buscador" style="width: 400px;"/>
+                    </div>
                 <table class="table" [mfData]="data | FiltroCentros:buscador" #mf="mfDataTable" [mfRowsOnPage]="10">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nro. Afiliado</th>
                             <th>Apellido y Nombre</th>
-                            <th class="text-center">Enfermedades</th>
+                            <!-- <th class="text-center">Enfermedades</th> -->
+                            <th>Centro</th>
+                            <th>Territorio</th>
+                            <th>Departamento</th>
+                            <th>Riesgo nutricional</th>
+                            <th>Riesgo cintura</th>
+                            <th>Riesgo pantorrilla</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -28,19 +33,25 @@
                             <th scope="row">{{indice+1}}</th>
                             <td>{{item.NroAfiliado}}</td>
                             <td>{{item.ApellidoNombre}}</td>
-                            <td>
+                            <!-- <td>
                                 <span *ngFor="let ea of enfermedadesXafiliados">
                                     <span *ngIf="ea.IdPersona==item.IdPersona">
                                             {{ea.NombreEnfermedad}},
                                     </span>
                                 </span>
-                            </td>
-                            <td class="text-right col-sm-3 col-md-3">
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" attr.data-target="#detalle{{item.IdCentro}}"><i class="fa fa-search-plus"></i></button>
-                                <b> |</b>
-                                <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/editarCentro/', item.IdCentro]"><i class="fa fa-edit"></i></button>
-                                <b> |</b>
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" attr.data-target="#eliminar{{item.IdCentro}}"><i class="fa fa-trash"></i></button>
+                            </td> -->
+                            <td>{{item.NombreCentro}}</td>
+                            <td>{{item.NombreTerritorio}}</td>
+                            <td>{{item.NombreDpto}}</td>
+                            <td>{{item.Est_Nutr}}</td>
+                            <td>{{item.RiesgoCintura}}</td>
+                            <td>{{item.RiesgoPantorrilla}}</td>
+                            <td class="text-center col-sm-3 col-md-2">
+                                <button type="button" class="btn btn-success" data-toggle="modal" attr.data-target="#detalle{{item.IdCentro}}"><i class="fa fa-search-plus"></i></button>
+                                <b>&nbsp;|&nbsp;</b>
+                                <button type="button" class="btn btn-warning" [routerLink]="['/editarCentro/', item.IdCentro]"><i class="fa fa-edit"></i></button>
+                                <b>&nbsp;|&nbsp;</b>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" attr.data-target="#eliminar{{item.IdCentro}}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                         <!-- MODAL DETALLE CENTRO -->
