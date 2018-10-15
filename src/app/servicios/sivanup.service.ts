@@ -271,6 +271,35 @@ export class SivanupService{
         return this._http.get(this.url+'enfermedadesXafiliados').map(res=>res.json());
     }
 
+    deleteAfiliado(id)
+    {
+        return this._http.get(this.url+'delete-afiliado/'+id).map(res=>res.json());
+    }
+
+    getAfiliado(id)
+    {
+        return this._http.get(this.url+'afiliado/'+id).map(res=>res.json());
+    }
+
+    getEncuesta(id)
+    {
+        return this._http.get(this.url+'encuesta/'+id).map(res=>res.json());
+    }
+
+    getEnfermedadesAfiliado(id)
+    {
+        return this._http.get(this.url+'enfermedadesAfiliado/'+id).map(res=>res.json());
+    }
+
+    editarAfiliadoEncuesta(id, encuesta: Encuestas)
+    {
+        let json = JSON.stringify(encuesta);
+        let params = 'json=' + json;
+        let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'update-afiliado/'+id, params, {headers: headers}).map(res=>res.json());
+    }
+
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)
     // {
     //     return new Promise((resolve, reject) => {

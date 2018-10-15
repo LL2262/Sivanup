@@ -1,17 +1,14 @@
 <div class="col-md-10 col-md-offset-1">
     <div class="jumbotron">
-        <h3 class="text-center">{{titulo}}</h3>
+        <h3 *ngIf="editar" class="text-center">Editar {{titulo}}</h3>
+        <h3 *ngIf="!editar" class="text-center">{{titulo}}</h3>
         <form #formDatosPersonales="ngForm">
   
             <div class="row">
               <div class="form-group col-md-2">
                 <label>Fecha</label>
-                  <!-- <div class="input-group col-md-3">
-                    <input type="date" max="{{afiliado.FechaComienzo}}" #fecha="ngModel" name="fecha" [(ngModel)]="afiliado.FechaComienzo" class="form-control" required>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>  
-                  </div> -->
                   <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)"
-                  [(ngModel)]="afiliado.FechaComienzo"  required></my-date-picker> 
+                  [(ngModel)]="fecha" class="dato"  required></my-date-picker> 
               </div>
 
               <div class="form-group col-md-3 col-md-offset-7">
@@ -121,7 +118,8 @@
               </div>
             </div>
 
-            <h3 class="text-center">{{titulo2}}</h3>
+            <h3 *ngIf="editar" class="text-center">Editar {{titulo2}}</h3>
+            <h3 *ngIf="!editar" class="text-center">{{titulo2}}</h3>
 
             <div class="row">
                 <div class="form-group col-md-6">
@@ -293,8 +291,47 @@
             
             </div>
 
-            <input type="button" [disabled]="!formDatosPersonales.form.valid" value="Enviar" class="btn btn-lg btn-success center-block" style="width: 150px;" (click)="enviar()">
+            <div class="form-inline text-center">
+                    <input *ngIf="editar" type="button" value="Guardar" [disabled]="!formDatosPersonales.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#editarAfiliado">
+                    <input *ngIf="!editar" type="button" value="Guardar" [disabled]="!formDatosPersonales.form.valid" class="btn btn-primary" data-toggle="modal" data-target="#nuevoAfiliado">
+                    <input [routerLink]="['/afiliados']" type="button" value="Ir a afiliados" class="btn btn-success">
+                </div>
     
           </form>
     </div>
 </div>
+
+<!-- MODAL GUARDAR AFILIADO -->
+<div class="modal fade" id="nuevoAfiliado" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center"><strong>Nuevo afiliado</strong></h3>
+                </div>
+                <div class="modal-body ">
+                    <h4 class="text-center"><strong>¿Estás seguro que deseas guardar este afiliado?</strong></h4>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-primary" (click)="enviar()" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL EDITAR AFILIADO -->
+    <div class="modal fade" id="editarAfiliado" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title text-center"><strong>Editar afiliado</strong></h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="text-center"><strong>¿Estás seguro que deseas modificar este afiliado?</strong></h4>
+                    </div>
+                    <div class="modal-footer" style="text-align: center">
+                        <button type="button" class="btn btn-primary" (click)="updateAfiliado()" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>

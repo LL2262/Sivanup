@@ -36,6 +36,7 @@ import { AdminUsers } from './componentes/administrar/admin-users.component';
 
 import { PersonasEncuestas } from './componentes/personas-encuestas/personas-encuestas.component';
 import { ConsultarAfiliados } from './componentes/personas-encuestas/consultar-afiliados.component';
+import { EditarAfiliado } from './componentes/personas-encuestas/editar-afiliado.component';
 
 import { AuthGuard } from './guards/auth.guard'
 
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
      {path: 'adminUsers', component: AdminUsers, canActivate: [AuthGuard]},
      {path: 'cargarAfiliado', component: PersonasEncuestas, canActivate: [AuthGuard]},
      {path: 'afiliados', component: ConsultarAfiliados, canActivate: [AuthGuard]},
+     {path: 'editarAfiliado/:id', component: EditarAfiliado, canActivate: [AuthGuard]},
      {path: '**', component: ErrorComponent}
 ];
 

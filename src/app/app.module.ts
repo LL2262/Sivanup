@@ -19,6 +19,8 @@ import { ProgramaFilterPipe }   from './componentes/programas/programa-filter.pi
 import { TerritorioFilterPipe }   from './componentes/territorios/territorio-filter.pipe';
 import { UsuariosFilterPipe }   from './componentes/administrar/usuarios-filter.pipe';
 import { UsuariosEmailFilterPipe }   from './componentes/administrar/usuariosEmail-filter.pipe';
+import { afiliadoNombreApellidoFilterPipe }   from './componentes/personas-encuestas/afiliadoNombreApellido-filter.pipe';
+import { afiliadoCentroFilterPipe }   from './componentes/personas-encuestas/afiliadoCentro-filter.pipe';
 
 // Rutas
 import { routing, appRoutingProviders } from './app.routing';
@@ -63,6 +65,7 @@ import{ AdminUsers } from './componentes/administrar/admin-users.component';
 
 import { PersonasEncuestas } from './componentes/personas-encuestas/personas-encuestas.component';
 import { ConsultarAfiliados } from './componentes/personas-encuestas/consultar-afiliados.component';
+import { EditarAfiliado } from './componentes/personas-encuestas/editar-afiliado.component';
 
 // Servicios
 import { AuthService } from './servicios/auth.service';
@@ -108,7 +111,10 @@ import { AuthGuard } from './guards/auth.guard';
     UsuariosFilterPipe,
     UsuariosEmailFilterPipe,
     PersonasEncuestas,
-    ConsultarAfiliados
+    ConsultarAfiliados,
+    afiliadoNombreApellidoFilterPipe,
+    afiliadoCentroFilterPipe,
+    EditarAfiliado
   ],
   imports: [
     BrowserModule,

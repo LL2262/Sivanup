@@ -11,7 +11,7 @@ import { Programas } from '../../models/programas';
 import { Territorios } from '../../models/territorios';
 import { Enfermedades } from '../../models/enfermedades';
 import { Encuestas } from '../../models/encuestas';
-import {IMyDpOptions, IMyDateModel} from 'mydatepicker';
+import {IMyDpOptions, IMyDateModel, IMyDate} from 'mydatepicker';
 
 declare var $:any;
 
@@ -21,7 +21,7 @@ declare var $:any;
     providers: [SivanupService, DatePipe]
   })
 
-  export class PersonasEncuestas{
+  export class EditarAfiliado{
 
     public titulo: string;
     public titulo2: string;
@@ -38,7 +38,10 @@ declare var $:any;
 
     public today = new Date();
 
-    public fecha: string;
+    public fecha: any;
+    public fechaBase: any;
+    public enfermedadesAfiliado;
+
 
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
@@ -50,6 +53,7 @@ declare var $:any;
     };
 
     public fechaComienzo: string; 
+    public id;
 
 
     constructor(private _route: ActivatedRoute, private _router: Router, private _sivanupService: SivanupService, public datepipe: DatePipe)
@@ -64,7 +68,7 @@ declare var $:any;
             "positionClass": "toast-top-right",
             "timeOut": "5000",
         }
-        
+
         this.afiliado = new Personas('','','',null,'',null,'',null,null,false,'',null,'','','','',null,null);
         this.encuesta = new Encuestas('','0','0','0','0','0','0','0','0','0','0',this.afiliado,false,'','');
 
@@ -76,20 +80,24 @@ declare var $:any;
             this.value = this.value.replace(/[^0-9]/g,'');
             });
 
-        this.editar = false;
+
+        this.editar = true;
         this.getEncuestadores();
         this.getDptos();
         this.getCentros();
         this.getProgramas();
         this.getTerritorios();
         this.getEnfermedades();
+        this.getAfiliado();
+        this.getEnfermedadesAfiliado();
+        this.getEncuesta();
     }
 
     onDateChanged(event: IMyDateModel) {
         this.fechaComienzo = event.formatted;
     }
 
-    enviar(){
+    updateAfiliado(){
         this.encuesta.Total='';
 
         this.afiliado.FechaComienzo=this.fechaComienzo;
@@ -97,48 +105,80 @@ declare var $:any;
         this.estadoNutriconal();
 
         this.riesgoPantorrillaCintura();
-        
-        this._sivanupService.addAfiliadoEncuesta(this.encuesta).subscribe(
-            result => {
-                if (result.code == 300) {
-                    console.log(result);
-                    toastr["error"]("El afiliado que intenta guardar ya existe", "Error");
-                } else {
-                    if (result.code == 500) {
-                        console.log(result);
-                        toastr["error"]("El afiliado que intenta guardar existe como baja", "Error");
-                    }else{
-                        if (result.code == 404) {
-                            console.log(result);
-                            toastr["success"]("El afiliado no se caro correctamente", "");
-                        }else{
-                            if(result.code == 408){
-                                console.log(result);
-                                toastr["success"]("El afiliado no se caro correctamente", "");
-                            }else{
-                                if(result.code == 407){
-                                    console.log(result);
-                                    toastr["success"]("El afiliado no se caro correctamente", "");
-                                }else{
-                                    if(result.code == 200){
-                                        toastr["success"]("Afiliado cargado correctamente", "");
-                                        this._router.navigate(['/afiliados']);
-                                    }
-                                    else{
-                                        console.log(result);
-                                        toastr["success"]("El afiliado no se caro correctamente", "");
-                                    }
-                                }
-                            }
-                        }
-                        
+
+        this.encuesta.IdPersona = this.afiliado;
+
+        this._route.params.forEach((params: Params) => {
+            let id = params['id'];
+            this._sivanupService.editarAfiliadoEncuesta(id, this.encuesta).subscribe(
+                response => {
+                    if (response.code == 200) {
+                        toastr["success"]("Afiliado modificado correctamente", "");
+                        this._router.navigate(['/afiliados']);
+                    } else {
+                        console.log(response);
                     }
+                },
+                error => {
+                    console.log(<any>error);
+                }
+            );
+        });
+   
+    }
+
+    getAfiliado() {
+        this._route.params.forEach((params: Params) => {
+            this.id = params['id'];
+
+            this._sivanupService.getAfiliado(this.id).subscribe(
+                response => {
+                    if (response.code == 200) {
+                        this.afiliado = response.data;
+                        this.fechaBase = this.datepipe.transform(this.afiliado.FechaComienzo,'dd/MM/yyyy');
+                        this.fecha = { date: this.fechaBase }
+                        this.fechaComienzo =  this.fechaBase;
+                    } else {
+                        this._router.navigate(['/afiliado']);
+                    }
+                },
+                error => {
+                    console.log(<any>error);
+                }
+            );
+        });
+    }
+
+    getEncuesta() {
+            this._sivanupService.getEncuesta(this.id).subscribe(
+                response => {
+                    if (response.code == 200) {
+                        this.encuesta = response.data;
+                    } else {
+                        this._router.navigate(['/afiliado']);
+                    }
+                },
+                error => {
+                    console.log(<any>error);
+                }
+            );
+    }
+
+    getEnfermedadesAfiliado(){
+        this._sivanupService.getEnfermedadesAfiliado(this.id).subscribe(
+            response => {
+                if (response.code == 200) {
+                    this.enfermedadesAfiliado = response.data;
+                    this.afiliado.Enfermedades = this.enfermedadesAfiliado
+                } else {
+                    this._router.navigate(['/afiliado']);
                 }
             },
             error => {
                 console.log(<any>error);
             }
         );
+
     }
 
     estadoNutriconal()

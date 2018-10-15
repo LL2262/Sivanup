@@ -7,12 +7,19 @@
                 <img src="../../../assets/bootstrap/img/load.gif" style="width: 100px">            
             </div>
 
-            <div class="table-responsive" *ngIf="data">
-                <div class="form-inline">
-                    <button type="button" class="btn btn-primary" [routerLink]="['/nuevaEnfermedad']">Nueva Enfermedad</button>
-                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Enfermedad" [(ngModel)]="buscador" style="width: 400px;"
-                    />
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <button type="button" class="btn btn-primary" [routerLink]="['/nuevaEnfermedad']">Nuevo Enfermedad</button>
                 </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Enfermedad" [(ngModel)]="buscador" />
+                </div>
+            </div>
+
+            <div class="table-responsive" *ngIf="data">
                 <table class="table" [mfData]="data | FiltroEnfermedades:buscador" #mf="mfDataTable" [mfRowsOnPage]="10">
                     <thead>
                         <tr>
@@ -38,7 +45,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title"><strong>Detalle de la enfermedad</strong></h3>
+                                        <h3 class="modal-title text-center"><strong>Detalle de la enfermedad</strong></h3>
                                     </div>
                                     <div class="modal-body">
                                         <div>
@@ -65,10 +72,10 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title"><strong>Eliminar enfermedad</strong></h3>
+                                        <h3 class="modal-title text-center"><strong>Eliminar enfermedad</strong></h3>
                                     </div>
                                     <div class="modal-body">
-                                        <h4><strong>¿Estás seguro que deseas eliminar {{item.NombreEnfermedad}} de la lista de enfermedades?</strong></h4>
+                                        <h4 class="text-center"><strong>¿Estás seguro que deseas eliminar {{item.NombreEnfermedad}} de la lista de enfermedades?</strong></h4>
                                     </div>
                                     <div class="modal-footer" style="text-align: center">
                                         <button type="button" class="btn btn-primary" (click)="OnDeleteEnfermedad(item.IdEnfermedad)" data-dismiss="modal">Aceptar</button>

@@ -7,12 +7,19 @@
                 <img src="../../../assets/bootstrap/img/load.gif" style="width: 100px">            
             </div>
 
-            <div class="table-responsive" *ngIf="data">
-                <div class="form-inline">
+            <div class="row">
+                <div class="form-group col-md-12">
                     <button type="button" class="btn btn-primary" [routerLink]="['/nuevoCentro']">Nuevo Centro</button>
-                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Centro de Jubilado" [(ngModel)]="buscador" style="width: 400px;"
-                    />
                 </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control text-uppercase" placeholder="Buscar Centro de Jubilado" [(ngModel)]="buscador" />
+                </div>
+            </div>
+
+            <div class="table-responsive" *ngIf="data">
                 <table class="table" [mfData]="data | FiltroCentros:buscador" #mf="mfDataTable" [mfRowsOnPage]="10">
                     <thead>
                         <tr>
@@ -38,7 +45,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title"><strong>Detalle del centro</strong></h3>
+                                        <h3 class="modal-title text-center"><strong>Detalle del centro</strong></h3>
                                     </div>
                                     <div class="modal-body">
                                         <div>
@@ -65,10 +72,10 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title"><strong>Eliminar centro</strong></h3>
+                                        <h3 class="modal-title text-center"><strong>Eliminar centro</strong></h3>
                                     </div>
                                     <div class="modal-body">
-                                        <h4><strong>¿Estás seguro que deseas eliminar {{item.NombreCentro}} de la lista de centros?</strong></h4>
+                                        <h4 class="text-center"><strong>¿Estás seguro que deseas eliminar {{item.NombreCentro}} de la lista de centros?</strong></h4>
                                     </div>
                                     <div class="modal-footer" style="text-align: center">
                                         <button type="button" class="btn btn-primary" (click)="OnDeleteCentro(item.IdCentro)" data-dismiss="modal">Aceptar</button>

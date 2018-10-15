@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Personas } from '../../models/personas';
-import { Encuestas } from '../../models/encuestas';
 import { SivanupService } from '../../servicios/sivanup.service';
+import * as toastr from 'toastr';
 
 @Component({
   selector: 'app-error',
@@ -13,13 +12,16 @@ export class ConsultarAfiliados{
 
   public titulo: string;
 
-  public data: any;
-  public enfermedadesXafiliados: any;
-  public id: number = 0;
+  public data;
+  public enfermedadesXafiliados;
 
   constructor(private _sivanupService: SivanupService) 
   {
     this.titulo="Lista de Afiliados"
+    toastr.options = {
+        "positionClass": "toast-top-right",
+        "timeOut": "5000",
+      }
   }
 
   ngOnInit() {
@@ -33,9 +35,9 @@ export class ConsultarAfiliados{
       this._sivanupService.traerAfiliadosYEncuesta().subscribe(
           result => {
               this.data = result.data;
-              console.log(this.data);
           },
           error => {
+            console.log(<any>error);
           }
       );
   }
@@ -52,22 +54,23 @@ export class ConsultarAfiliados{
   );
   }
 
-  // OnDeleteCentro(id)
-  // {
-  //         this._sivanupService.deleteCentro(id).subscribe(
-  //             response => {
-  //                 if (response.code == 200) {
-  //                     console.log(response);
-  //                     toastr["success"]("Centro eliminado correctamente", "");
-  //                     this.getCentros();
-  //                 } else {
-  //                     console.log(response);
-  //                 }
-  //             },
-  //             error => {
-  //                 console.log(<any>error);
-  //             }
-  //         );
-  // }
+  OnDeleteAfiliado(id)
+  {
+          this._sivanupService.deleteAfiliado(id).subscribe(
+              response => {
+                  if (response.code == 200) {
+                      console.log(response);
+                      toastr["success"]("Afiliado eliminado correctamente", "");
+                      this.traerAfiliadosEncuestas();
+                      this.traerEnfermedadesXfiliados();
+                  } else {
+                      console.log(response);
+                  }
+              },
+              error => {
+                  console.log(<any>error);
+              }
+          );
+  }
 
 }
