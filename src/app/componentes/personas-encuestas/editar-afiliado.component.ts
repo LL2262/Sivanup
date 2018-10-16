@@ -89,7 +89,6 @@ declare var $:any;
         this.getTerritorios();
         this.getEnfermedades();
         this.getAfiliado();
-        this.getEnfermedadesAfiliado();
         this.getEncuesta();
     }
 
@@ -138,6 +137,7 @@ declare var $:any;
                         this.fechaBase = this.datepipe.transform(this.afiliado.FechaComienzo,'dd/MM/yyyy');
                         this.fecha = { date: this.fechaBase }
                         this.fechaComienzo =  this.fechaBase;
+                        this.getEnfermedadesAfiliado();
                     } else {
                         this._router.navigate(['/afiliado']);
                     }
@@ -169,7 +169,7 @@ declare var $:any;
             response => {
                 if (response.code == 200) {
                     this.enfermedadesAfiliado = response.data;
-                    this.afiliado.Enfermedades = this.enfermedadesAfiliado
+                    this.afiliado.Enfermedades = this.enfermedadesAfiliado;
                 } else {
                     this._router.navigate(['/afiliado']);
                 }
