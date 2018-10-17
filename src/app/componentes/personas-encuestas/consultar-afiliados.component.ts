@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SivanupService } from '../../servicios/sivanup.service';
 import * as toastr from 'toastr';
 import * as XLSX from 'xlsx';
+const { read, write, utils } = XLSX;
 
 @Component({
   selector: 'app-error',
@@ -74,6 +75,29 @@ export class ConsultarAfiliados{
           );
   }
 
+  ordenarcClave(){
+    
+    let objeto = { 
+        gratificacionZona:7500,
+        leyNoDocente:"28000", 
+        sueldoBase:50000, //Primero
+        sueldoGeneral:0, //Segundo
+        sueldoPIE:0,   //Tercero
+        sueldoSEP:0  //Cuarto
+      }
+      console.log(objeto)
+      
+      objeto = {
+        sueldoBase:objeto.sueldoBase, //Primero
+        sueldoGeneral:objeto.sueldoGeneral, //Segundo
+        sueldoPIE:objeto.sueldoPIE,   //Tercero
+        sueldoSEP:objeto.sueldoSEP,  //Cuarto
+        ...objeto
+      }
+      
+      console.log(objeto)
+  }
+
   exportExcel(){
       
     for(let i in this.data){
@@ -84,15 +108,27 @@ export class ConsultarAfiliados{
             }
         }
     }
+    var today = new Date();
+    var dia = today.getDate();
+    var mes = today.getMonth()+1;
+    var ano = today.getFullYear();
 
-    //   this.data[1]['Enfermedades'] = 'Hipertension';
-     console.log(this.data);
+    this.ordenarcClave();
+
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    workbook.Sheets['data']['A1'] = {t:'s', v:'IDENTIFICADOR'};
+    workbook.Sheets['data']['B1'] = {t:'s', v:'NRO. DE AFILIADO'};
+     
+     
+    XLSX.writeFile(workbook, 'Listado-de-afiliados_'+dia+'-'+mes+'-'+ano+'.xls', { bookType: 'xls', type: 'buffer' });
  }
 
 //  exportExcel(){
 //     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
 //     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-//     XLSX.writeFile(workbook, 'my_file.xls', { bookType: 'xls', type: 'buffer' });
+//     XLSX.writeFile(workbook, 'Listado_de_afiliados_.xls', { bookType: 'xls', type: 'buffer' });
 //  }
 
 }
