@@ -106,7 +106,17 @@ export class ConsultarAfiliados{
             workbook.Sheets['data']['D1'] = {t:'s', v:'EDAD'}
             workbook.Sheets['data']['E1'] = {t:'s', v:'SEXO'}
             workbook.Sheets['data']['F1'] = {t:'s', v:'NRO. AFILIADO'}
-            workbook.Sheets['data']['F1'] = {t:'s', v:'PROGRAMA'}
+            workbook.Sheets['data']['G1'] = {t:'s', v:'PROGRAMA'}
+            workbook.Sheets['data']['R1'] = {t:'s', v:'ESTADO NUTRICIONAL'}
+            workbook.Sheets['data']['S1'] = {t:'s', v:'COMENTARIO'}
+            workbook.Sheets['data']['T1'] = {t:'s', v:'ENCUESTADOR'}
+            workbook.Sheets['data']['U1'] = {t:'s', v:'TERRITORIO'}
+            workbook.Sheets['data']['V1'] = {t:'s', v:'DEPARTAMENTO'}
+            workbook.Sheets['data']['W1'] = {t:'s', v:'CINTURA'}
+            workbook.Sheets['data']['X1'] = {t:'s', v:'RIESGO CINTURA'}
+            workbook.Sheets['data']['Y1'] = {t:'s', v:'PANTORRILLA'}
+            workbook.Sheets['data']['Z1'] = {t:'s', v:'RIESGO PANTORRILLA'}
+            workbook.Sheets['data']['AA1'] = {t:'s', v:'ENFERMEDADES'}
 
 
             XLSX.writeFile(workbook, 'Listado-de-afiliados_'+dia+'-'+mes+'-'+ano+'.xlsx', { bookType: 'xlsx', type: 'buffer', cellStyles: true  });

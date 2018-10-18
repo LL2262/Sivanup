@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { promise } from '../../../node_modules/protractor';
-import { resolve } from 'url';
-import { reject } from '../../../node_modules/@types/q';
-import firebase = require('../../../node_modules/firebase');
+import * as firebase from '../../../node_modules/firebase';
 
 @Injectable()
 export class AuthService {
