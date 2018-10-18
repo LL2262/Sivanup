@@ -300,6 +300,12 @@ export class SivanupService{
         return this._http.post(this.url+'update-afiliado/'+id, params, {headers: headers}).map(res=>res.json());
     }
 
+    afiliadoExcel()
+    {
+        return this._http.get(this.url+'afiliadosExcel').map(res=>res.json());
+    }
+
+
     // makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)
     // {
     //     return new Promise((resolve, reject) => {

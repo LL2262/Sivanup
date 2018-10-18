@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SivanupService } from '../../servicios/sivanup.service';
 import * as toastr from 'toastr';
 import * as XLSX from 'xlsx';
-const { read, write, utils } = XLSX;
 
 @Component({
   selector: 'app-error',
@@ -16,6 +15,7 @@ export class ConsultarAfiliados{
 
   public data;
   public enfermedadesXafiliados;
+  public excel;
 
   constructor(private _sivanupService: SivanupService) 
   {
@@ -75,54 +75,57 @@ export class ConsultarAfiliados{
           );
   }
 
-  ordenarcClave(){
-    
-    let objeto = { 
-        gratificacionZona:7500,
-        leyNoDocente:"28000", 
-        sueldoBase:50000, //Primero
-        sueldoGeneral:0, //Segundo
-        sueldoPIE:0,   //Tercero
-        sueldoSEP:0  //Cuarto
-      }
-      console.log(objeto)
-      
-      objeto = {
-        sueldoBase:objeto.sueldoBase, //Primero
-        sueldoGeneral:objeto.sueldoGeneral, //Segundo
-        sueldoPIE:objeto.sueldoPIE,   //Tercero
-        sueldoSEP:objeto.sueldoSEP,  //Cuarto
-        ...objeto
-      }
-      
-      console.log(objeto)
-  }
+
 
   exportExcel(){
-      
-    for(let i in this.data){
-        this.data[i]['Enfermedades'] = "";
-        for(let item of this.enfermedadesXafiliados){
-            if(this.data[i]['IdPersona']==item['IdPersona']){
-                this.data[i]['Enfermedades'] += item['NombreEnfermedad'] + ", ";
+    //console.log("primmero");
+    this._sivanupService.afiliadoExcel().subscribe(
+        result => {
+            this.excel = result.data;
+ 
+            for(let i in this.excel){
+                this.excel[i]['Enfermedades'] = "";
+                for(let item of this.enfermedadesXafiliados){
+                    if(this.excel[i]['IdPersona']==item['IdPersona']){
+                        this.excel[i]['Enfermedades'] += item['NombreEnfermedad'] + ", ";
+                    }
+                }
             }
+
+            var today = new Date();
+            var dia = today.getDate();
+            var mes = today.getMonth()+1;
+            var ano = today.getFullYear();
+
+            const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.excel);
+            const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+
+            workbook.Sheets['data']['A1'] = {t:'s', v:'IDENTIFICADOR'}
+            workbook.Sheets['data']['B1'] = {t:'s', v:'CENTRO'}
+            workbook.Sheets['data']['C1'] = {t:'s', v:'APELLIDO Y NOMBRE'}
+            workbook.Sheets['data']['D1'] = {t:'s', v:'EDAD'}
+            workbook.Sheets['data']['E1'] = {t:'s', v:'SEXO'}
+            workbook.Sheets['data']['F1'] = {t:'s', v:'NRO. AFILIADO'}
+            workbook.Sheets['data']['F1'] = {t:'s', v:'PROGRAMA'}
+
+
+            XLSX.writeFile(workbook, 'Listado-de-afiliados_'+dia+'-'+mes+'-'+ano+'.xlsx', { bookType: 'xlsx', type: 'buffer', cellStyles: true  });
+
+        },
+        error => {
+            console.log(<any>error);
         }
-    }
-    var today = new Date();
-    var dia = today.getDate();
-    var mes = today.getMonth()+1;
-    var ano = today.getFullYear();
-
-    this.ordenarcClave();
+    );
 
 
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
-    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-    workbook.Sheets['data']['A1'] = {t:'s', v:'IDENTIFICADOR'};
-    workbook.Sheets['data']['B1'] = {t:'s', v:'NRO. DE AFILIADO'};
+
+    //const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.excel);
+    //const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    // workbook.Sheets['data']['A1'] = {t:'s', v:'IDENTIFICADOR'};
+    // workbook.Sheets['data']['B1'] = {t:'s', v:'NRO. DE AFILIADO'};
      
      
-    XLSX.writeFile(workbook, 'Listado-de-afiliados_'+dia+'-'+mes+'-'+ano+'.xls', { bookType: 'xls', type: 'buffer' });
+    //XLSX.writeFile(workbook, 'Listado-de-afiliados_'+dia+'-'+mes+'-'+ano+'.xls', { bookType: 'xls', type: 'buffer' });
  }
 
 //  exportExcel(){
@@ -130,5 +133,6 @@ export class ConsultarAfiliados{
 //     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
 //     XLSX.writeFile(workbook, 'Listado_de_afiliados_.xls', { bookType: 'xls', type: 'buffer' });
 //  }
+
 
 }
