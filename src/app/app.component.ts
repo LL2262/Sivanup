@@ -32,13 +32,31 @@ export class AppComponent {
         this.emailUsuario = auth.email;
         this.fotoUsuario = auth.photoURL;
         this._sivanupService.getUsuario(this.emailUsuario).subscribe(result=>{
-          this.usuario = result.data;
+        this.usuario = result.data;
+
+        $('#modulos').show();
+          
+        console.log(this.isLogin);
         });
       }
       else{
         this.isLogin = false;
+
+        $('#modulos').hide();
+          
+        console.log(this.isLogin);
       }
     });
+
+    $('.home a').click(function(){ 
+      $('.navbar-toggle:visible').click();
+    });
+
+    $('.dropdown-menu li a').click(function(){ 
+      $('.navbar-toggle:visible').click();
+    });
+
+
   }
 
   onClickLogout()
