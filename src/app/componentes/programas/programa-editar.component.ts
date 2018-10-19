@@ -6,7 +6,7 @@ import * as toastr from 'toastr';
 
 @Component({
     selector: 'programas-editar',
-    templateUrl: './programa-nuevo.component.html',
+    templateUrl: './programa-editar.component.html',
     providers: [SivanupService]
   })
 

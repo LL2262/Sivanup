@@ -27,20 +27,20 @@
     </div>
 </div>
 
-<!-- MODAL GUARDAR CENTRO -->
-<div class="modal fade" id="nuevoCentro" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title text-center"><strong>Nuevo centro</strong></h3>
-            </div>
-            <div class="modal-body">
-                <h4 class="text-center"><strong>¿Estás seguro que deseas agregar este centro?</strong></h4>
-            </div>
-            <div class="modal-footer" style="text-align: center">
-                <button type="button" class="btn btn-primary" (click)="saveCentro()" data-dismiss="modal">Aceptar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+<!-- MODAL EDITAR CENTRO -->
+<div class="modal fade" id="editarCentro" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center"><strong>Editar centro</strong></h3>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center"><strong>¿Estás seguro que deseas editar este centro?</strong></h4>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-primary" (click)="updateCentro()" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>

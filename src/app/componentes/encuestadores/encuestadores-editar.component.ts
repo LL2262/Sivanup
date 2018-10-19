@@ -6,7 +6,7 @@ import * as toastr from 'toastr';
 
 @Component({
     selector: 'encuestador-editar',
-    templateUrl: './encuestadores-nuevo.component.html',
+    templateUrl: './encuestadores-editar.component.html',
     providers: [SivanupService]
   })
 

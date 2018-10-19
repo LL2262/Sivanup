@@ -6,7 +6,7 @@ import * as toastr from 'toastr';
 
 @Component({
     selector: 'enfermedades-editar',
-    templateUrl: './enfermedad-nuevo.component.html',
+    templateUrl: './enfermedad-editar.component.html',
     providers: [SivanupService]
   })
 

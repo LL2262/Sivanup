@@ -17,7 +17,7 @@ declare var $:any;
 
 @Component({
     selector: 'personas-encuestas',
-    templateUrl: './personas-encuestas.component.html',
+    templateUrl: './personas-encuestas-editar.component.html',
     providers: [SivanupService, DatePipe]
   })
 

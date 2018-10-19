@@ -16,6 +16,8 @@ export class ConsultarAfiliados{
   public data;
   public enfermedadesXafiliados;
   public excel;
+  public buscadorNombreApellido: string;
+  public buscadorCentro: string;
 
   constructor(private _sivanupService: SivanupService) 
   {

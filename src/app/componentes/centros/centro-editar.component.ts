@@ -6,7 +6,7 @@ import * as toastr from 'toastr';
 
 @Component({
     selector: 'centros-editar',
-    templateUrl: './centro-nuevo.component.html',
+    templateUrl: './centro-editar.component.html',
     providers: [SivanupService]
   })
 

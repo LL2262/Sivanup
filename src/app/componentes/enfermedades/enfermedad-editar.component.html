@@ -27,20 +27,20 @@
     </div>
 </div>
 
-<!-- MODAL GUARDAR ENFERMEDAD -->
-<div class="modal fade" id="nuevoEnfermedad" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title text-center"><strong>Nueva enfermedad</strong></h3>
-            </div>
-            <div class="modal-body">
-                <h4 class="text-center"><strong>¿Estás seguro que deseas agregar esta enfermedad?</strong></h4>
-            </div>
-            <div class="modal-footer" style="text-align: center">
-                <button type="button" class="btn btn-primary" (click)="saveEnfermedad()" data-dismiss="modal">Aceptar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+<!-- MODAL EDITAR ENFERMEDAD -->
+<div class="modal fade" id="editarEnfermedad" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center"><strong>Editar enfermedad</strong></h3>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center"><strong>¿Estás seguro que deseas editar esta enfermedad?</strong></h4>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" class="btn btn-primary" (click)="updateEnfermedad()" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>

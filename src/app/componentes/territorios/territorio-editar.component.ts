@@ -6,7 +6,7 @@ import * as toastr from 'toastr';
 
 @Component({
     selector: 'territorio-editar',
-    templateUrl: './territorio-nuevo.component.html',
+    templateUrl: './territorio-editar.component.html',
     providers: [SivanupService]
   })
 

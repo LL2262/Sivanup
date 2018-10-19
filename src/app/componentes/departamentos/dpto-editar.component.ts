@@ -6,7 +6,7 @@ import * as toastr from 'toastr';
 
 @Component({
     selector: 'dpto-editar',
-    templateUrl: './dpto-nuevo.component.html',
+    templateUrl: './dpto-editar.component.html',
     providers: [SivanupService]
   })
 
