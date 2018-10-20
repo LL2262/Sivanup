@@ -31,7 +31,7 @@
                     </thead>
                     <tbody *ngFor="let item of mf.data;let indice=index">
                         <tr>
-                            <th scope="row">{{indice+1}}</th>
+                            <th scope="row">{{item.IdDpto}}</th>
                             <td>{{item.NombreDpto}}</td>
                             <td class="text-right col-sm-3 col-md-3">
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" attr.data-target="#detalle{{item.IdDpto}}"><i class="fa fa-search-plus"></i></button>
