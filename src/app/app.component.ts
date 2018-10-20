@@ -35,24 +35,43 @@ export class AppComponent {
         this.usuario = result.data;
 
         $('#modulos').show();
+        $('#afiliados').show();
+        $('#logout').show();
+        $('#login').hide();
+        $('#registro').hide();
+
+        if(this.usuario.IdPermiso == 1){
+          $('#administrar').show();
+        }
           
-        console.log(this.isLogin);
         });
       }
       else{
         this.isLogin = false;
 
         $('#modulos').hide();
+        $('#afiliados').hide();
+        $('#logout').hide();
+        $('#login').show();
+        $('#registro').show();
+        $('#administrar').hide();
           
-        console.log(this.isLogin);
       }
     });
 
-    $('.home a').click(function(){ 
+    $('.home').click(function(){ 
       $('.navbar-toggle:visible').click();
     });
 
     $('.dropdown-menu li a').click(function(){ 
+      $('.navbar-toggle:visible').click();
+    });
+
+    $('.logueos li a').click(function(){ 
+      $('.navbar-toggle:visible').click();
+    });
+
+    $('.admin').click(function(){ 
       $('.navbar-toggle:visible').click();
     });
 

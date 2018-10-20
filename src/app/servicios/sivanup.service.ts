@@ -18,7 +18,7 @@ export class SivanupService{
 
     constructor(public _http: Http)
     {
-        this.url = 'http://localhost/Sivanup-backend/index.php/' 
+        this.url = 'http://192.168.1.5/Sivanup-backend/index.php/' 
     }
 
     email(usuario: Usuarios)

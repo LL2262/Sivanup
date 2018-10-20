@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a [routerLink]="['/home']" >
+                        <a [routerLink]="['/home']" class="home" >
                             <i class="fa fa-home"></i> Home</a>
                     </li>
                     <li class="dropdown" id="modulos">
@@ -48,8 +48,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li *ngIf="isLogin" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Afiliados
+                    <li class="dropdown" id="afiliados">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Afiliados
                             <span class="expand_caret caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -63,17 +63,17 @@
                             </li>
                         </ul>
                     </li>
-                    <li *ngIf="isLogin && usuario.IdPermiso == 1">
-                        <a [routerLink]="['/adminUsers']">
+                    <li id="administrar">
+                        <a [routerLink]="['/adminUsers']" class="admin">
                             <i class="fa fa-edit"></i> Administrar</a>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li *ngIf="!isLogin">
+                <ul class="nav navbar-nav navbar-right logueos" >
+                    <li id="registro">
                         <a [routerLink]="['/registrarse']">
                             <span class="glyphicon glyphicon-user"></span> Registrarse</a>
                     </li>
-                    <li *ngIf="!isLogin">
+                    <li id="login">
                         <a [routerLink]="['/login']">
                             <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
@@ -83,7 +83,7 @@
                             <span> {{emailUsuario}}</span>
                         </a>
                     </li>
-                    <li *ngIf="isLogin">
+                    <li id="logout">
                         <a href="#" (click)="onClickLogout()">
                             <span class="glyphicon glyphicon-log-out"></span> Logout</a>
                     </li>
