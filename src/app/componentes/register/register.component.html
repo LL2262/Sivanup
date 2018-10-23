@@ -32,17 +32,34 @@
             </div>
           </div>
           
-          <div class="row">
+          <!-- <div class="row">
             <div class="form-group col-md-6">
               <label>Email<span *ngIf="!email.valid && email.touched" class="alert-danger">
                 <i class="fa fa-exclamation-circle"></i> El email es obligatorio</span></label>
               <input type="email" #email="ngModel" name="email" [(ngModel)]="usuario.EmailUsuario" class="form-control" placeholder="Email" required>
-            </div>
+            </div> -->
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label>Email<span *ngIf="!email.valid && email.touched" class="alert-danger">
+                  <i class="fa fa-exclamation-circle"></i> El email es obligatorio</span></label>
+                <input type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email" [(ngModel)]="usuario.EmailUsuario" #email="ngModel" placeholder="Email" required>
+                <div *ngIf="email.errors && (email.touched || email.dirty)" class ="alert-danger">
+                 <div [hidden]="!email.errors?.pattern">
+                   Email invalido
+                 </div> 
+                </div> 
+              </div>
     
             <div class="form-group col-md-6">
               <label>Contraseña<span *ngIf="!password.valid && password.touched" class="alert-danger">
                 <i class="fa fa-exclamation-circle"></i> La contraseña es obligatoria</span></label>
-              <input type="password" #password="ngModel" name="password" [(ngModel)]="usuario.PasswordUsuario" class="form-control" placeholder="Contraseña" required>
+              <input type="password" #password="ngModel" name="password" [(ngModel)]="usuario.PasswordUsuario" class="form-control" pattern="[A-Za-z0-9!?-]{8,12}" placeholder="Contraseña" required>
+              <div *ngIf="password.errors && (password.touched || password.dirty)" class ="alert-danger">
+                <div [hidden]="!password.errors?.pattern">
+                  La contraseña debe tener 8 a 12 caracteres
+                </div> 
+               </div> 
             </div>
           </div>
           

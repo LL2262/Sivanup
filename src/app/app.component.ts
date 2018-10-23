@@ -34,40 +34,24 @@ export class AppComponent {
         this._sivanupService.getUsuario(this.emailUsuario).subscribe(result=>{
         this.usuario = result.data;
 
-        $('#modulos').show();
-        $('#afiliados').show();
-        $('#logout').show();
-        $('#login').hide();
-        $('#registro').hide();
-
-        if(this.usuario.IdPermiso == 1){
-          $('#administrar').show();
-        }
-          
         });
       }
       else{
-        this.isLogin = false;
-
-        $('#modulos').hide();
-        $('#afiliados').hide();
-        $('#logout').hide();
-        $('#login').show();
-        $('#registro').show();
-        $('#administrar').hide();
-          
+        this.isLogin = false;         
       }
-    });
 
-    $('.home').click(function(){ 
-      $('.navbar-toggle:visible').click();
     });
+    
+  }
+
+  ngAfterViewChecked()
+  {
 
     $('.dropdown-menu li a').click(function(){ 
       $('.navbar-toggle:visible').click();
     });
 
-    $('.logueos li a').click(function(){ 
+    $('.home').click(function(){ 
       $('.navbar-toggle:visible').click();
     });
 
@@ -75,7 +59,17 @@ export class AppComponent {
       $('.navbar-toggle:visible').click();
     });
 
+    $('.register').click(function(){ 
+      $('.navbar-toggle:visible').click();
+    });
 
+    $('.login').click(function(){ 
+      $('.navbar-toggle:visible').click();
+    });
+
+    $('.logout').click(function(){ 
+      $('.navbar-toggle:visible').click();
+    });
   }
 
   onClickLogout()
